@@ -1,0 +1,153 @@
+html {
+  background: url('@/assets/login-bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+
+.fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-leave-active {
+  transition: all 0.36s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.h100p {
+  height: 100% !important;
+}
+
+.w100p {
+  width: 100% !important;
+}
+
+.h0 {
+  height: 0 !important;
+}
+
+.w0 {
+  width: 0 !important;
+}
+
+/* 宽度 */
+.w220 {
+  width: 220px;
+}
+
+/* 左外边距 */
+.ml24 {
+  margin-left: 24px;
+}
+
+.ml40 {
+  margin-left: 40px;
+}
+
+/* 上外边距 */
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt24 {
+  margin-top: 24px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+.mt50{
+  margin-top: 50px;
+}
+
+/* 右外边距 */
+.mr16 {
+  margin-right: 16px;
+}
+
+.mr24 {
+  margin-right: 24px;
+}
+
+.mr40 {
+  margin-right: 40px;
+}
+
+.mr50 {
+  margin-right: 50px;
+}
+
+/* 下外边距 */
+.mb8 {
+  margin-bottom: 8px;
+}
+
+.mb12 {
+  margin-bottom: 12px;
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+.mb18 {
+  margin-bottom: 18px;
+}
+
+.mb24 {
+  margin-bottom: 24px;
+}
+
+.mb36 {
+  margin-bottom: 36px;
+}
+
+.mb45{
+  margin-bottom: 45px;
+}
+
+.mb48 {
+  margin-bottom: 48px;
+}
+
+.n-data-table-thead {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    border: 1px solid #1c33ad;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+

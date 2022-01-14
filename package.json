@@ -1,0 +1,27 @@
+{
+  "name": "pmt-web",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "@vicons/fluent": "^0.11.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "naive-ui": "^2.24.1",
+    "sass": "^1.46.0",
+    "scss": "^0.2.4",
+    "vfonts": "0.0.3",
+    "vite": "^2.7.2"
+  }
+}
