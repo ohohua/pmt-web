@@ -68,13 +68,12 @@
 <script setup>
 import api from "@/api";
 import { ref } from "vue";
-import { useMessage } from 'naive-ui';
+import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
 
-
 const formRef = ref(null);
-const message = useMessage()
+const message = useMessage();
 const model = ref({
   account: "",
   password: "",
@@ -84,25 +83,22 @@ const handleOpenLogin = () => {
   isActive.value = true;
 };
 const handleLogin = () => {
-  // api["login-page"]
-  //   .login()
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((e) => {
-  //     console.error(e);
-  //   });
-
+  const params = model.value;
   formRef.value.validate((errors) => {
     if (!errors) {
-      message.success("Valid");
+      api["login-page"]
+        .login(params)
+        .then((res) => {
+          message.success(res.data);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
       isActive.value = false;
     } else {
-      console.log(errors);
       message.error("Invalid");
     }
   });
-  
 };
 </script>
 
