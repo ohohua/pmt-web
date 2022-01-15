@@ -71,7 +71,9 @@ import { ref } from "vue";
 import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
+import { useRouter } from 'vue-router'
 
+const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
 const model = ref({
@@ -90,10 +92,12 @@ const handleLogin = () => {
         .login(params)
         .then((res) => {
           message.success(res.data);
+          router.push({name: 'index'})
         })
         .catch((e) => {
           console.error(e);
         });
+        router.push({name: 'home'})
       isActive.value = false;
     } else {
       message.error("Invalid");

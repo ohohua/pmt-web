@@ -13,7 +13,6 @@ for (const path in _viewModules) {
 const routes = [
   {
     path: '/',
-    name: 'index',
     redirect: { name: 'login' },
   },
   {
@@ -25,14 +24,45 @@ const routes = [
     }
   },
   {
-    path: '/home',
-    name: 'home',
-    component: views['home/lr-home'],
+    path: '/index',
+    name: 'index',
+    component: views['lr-index'],
     meta: {
       title: '主页'
     },
     children: [
-      
+      {
+        path: '/index/home',
+        name:'home',
+        component: views['home/lr-home'],
+        meta: {
+          title: 'home页面'
+        }
+      },
+      {
+        path: '/index/home1',
+        name:'home1',
+        component: views['home/lr-home'],
+        meta: {
+          title: 'home1页面'
+        }
+      },
+      {
+        path: '/index/home2',
+        name:'home2',
+        component: views['home/lr-home'],
+        meta: {
+          title: 'home2页面'
+        }
+      },
+      {
+        path: '/index/home3',
+        name:'home3',
+        component: views['home/lr-home'],
+        meta: {
+          title: 'home3页面'
+        }
+      }
     ]
   },
 ];

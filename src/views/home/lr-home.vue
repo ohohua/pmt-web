@@ -1,9 +1,5 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <keep-alive :include="/^home-/">
-      <component :is="Component"></component>
-    </keep-alive>
-  </router-view>
+  1
 </template>
 
 <script setup>
