@@ -1,6 +1,6 @@
 <template>
   <div class="lr-login">
-    <lr-login-form></lr-login-form>
+    <lr-login-form />
   </div>
 </template>
 

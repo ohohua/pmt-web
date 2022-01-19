@@ -6,7 +6,6 @@ for (const path in _viewModules) {
   if (_viewModules.hasOwnProperty(path)) {
     // path like /src/views/a/../b.vue, we need key [a/...].
     views[path.substring(prefixLen, path.length - suffixLen)] = _viewModules[path];
-    console.log(path.substring(prefixLen, path.length - suffixLen));
   }
 }
 
@@ -26,7 +25,7 @@ const routes = [
   {
     path: '/index',
     name: 'index',
-    component: views['lr-index'],
+    component: views['index'],
     meta: {
       title: '主页'
     },

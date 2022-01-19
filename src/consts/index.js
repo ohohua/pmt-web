@@ -1,5 +1,5 @@
 export const loginRule = {
-  account: {
+  username: {
     required: true,
     message: "请输入账号",
     trigger: ["input", "blur"],

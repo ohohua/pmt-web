@@ -27,7 +27,7 @@ export default defineConfig(
       proxy: {
         // 选项写法
         '/pmt-api': {
-          target: 'http://localhost:9088/api/app',
+          target: 'http://localhost:9088/api',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/pmt-api/, '')
         },
