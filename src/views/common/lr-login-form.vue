@@ -72,39 +72,41 @@ import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
 import { useRouter } from "vue-router";
-
+import { encryp, decrypt } from '@utils/index'
 const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
 const model = ref({
-  username: "",
-  password: "",
+  username: "admin",
+  password: "123456",
 });
 const isActive = ref(false);
 const handleOpenLogin = () => {
   isActive.value = true;
 };
 const handleLogin = () => {
-  const params = model.value;
+  const params = {
+    username: model.value.username,
+    password: encryp('1234123412ABCDEF','1234123412ABCDEF',model.value.password)
+  };
   formRef.value.validate((errors) => {
     if (!errors) {
       api["login-page"]
         .login(params)
         .then((res) => {
-          console.log(res);
-          if (res.code === 1) {
-            message.success("登录成功！");
-            router.push({ name: "index" });
-          } else {
-            message.error(res.data.error || '登录失败！')
-          }
+          message.success("登录成功！");
+          window.localStorage.setItem('COMMAND_CENTER_token', res.data.token);
+          router.push({ name: "index" });
         })
         .catch((e) => {
-          console.error(e);
+          console.log(e);
+          message.error(e.error.response.data.data.error || '登录失败！')
         });
     }
   });
 };
+console.log(encryp('1234123412ABCDEF','1234123412ABCDEF','123456'))
+console.log(decrypt('1234123412ABCDEF','1234123412ABCDEF','dad66f55856e9a19845424f0e0b8fa9f'));
 </script>
 
 <style lang="scss">
