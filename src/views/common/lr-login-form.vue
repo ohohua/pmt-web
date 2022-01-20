@@ -72,7 +72,7 @@ import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
 import { useRouter } from "vue-router";
-import { encryp, decrypt } from '@utils/index'
+import { encryp } from '@utils/index'
 const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
@@ -105,8 +105,6 @@ const handleLogin = () => {
     }
   });
 };
-console.log(encryp('1234123412ABCDEF','1234123412ABCDEF','123456'))
-console.log(decrypt('1234123412ABCDEF','1234123412ABCDEF','dad66f55856e9a19845424f0e0b8fa9f'));
 </script>
 
 <style lang="scss">

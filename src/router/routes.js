@@ -26,42 +26,35 @@ const routes = [
     path: '/index',
     name: 'index',
     component: views['index'],
+    redirect:{ name: 'symptom' },
     meta: {
       title: '主页'
     },
     children: [
       {
-        path: '/index/home',
-        name:'home',
-        component: views['home/lr-home'],
+        path: '/index/symptom',
+        name:'symptom',
+        component: views['symptom/symptom'],
         meta: {
-          title: 'home页面'
+          title: '症状描述'
         }
       },
       {
-        path: '/index/home1',
-        name:'home1',
-        component: views['home/lr-home'],
+        path: '/index/questionnaire',
+        name:'questionnaire',
+        component: views['questionnaire/questionnaire'],
         meta: {
-          title: 'home1页面'
+          title: '心理测试'
         }
       },
       {
-        path: '/index/home2',
-        name:'home2',
-        component: views['home/lr-home'],
+        path: '/index/community',
+        name:'community',
+        component: views['community/community'],
         meta: {
-          title: 'home2页面'
+          title: '社区'
         }
       },
-      {
-        path: '/index/home3',
-        name:'home3',
-        component: views['home/lr-home'],
-        meta: {
-          title: 'home3页面'
-        }
-      }
     ]
   },
 ];
