@@ -14,8 +14,10 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.0.0",
     "@vicons/fluent": "^0.11.0",
+    "@vicons/ionicons4": "^0.11.0",
+    "@vicons/ionicons5": "^0.11.0",
+    "@vitejs/plugin-vue": "^2.0.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

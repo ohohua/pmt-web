@@ -57,6 +57,10 @@ li {
 }
 
 /* 左外边距 */
+.ml12 {
+  margin-left: 12px;
+}
+
 .ml24 {
   margin-left: 24px;
 }
@@ -132,23 +136,27 @@ li {
   margin-bottom: 48px;
 }
 
-.n-data-table-thead {
-  position: relative;
-
-  &:before {
-    content: '';
-    display: block;
-    border: 1px solid #1c33ad;
-    position: absolute;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    user-select: none;
-    pointer-events: none;
-  }
+.cp {
+  cursor: pointer;
 }
+
+// .n-data-table-thead {
+//   position: relative;
+
+//   &:before {
+//     content: '';
+//     display: block;
+//     border: 1px solid #1c33ad;
+//     position: absolute;
+//     z-index: 999;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     right: 0;
+//     user-select: none;
+//     pointer-events: none;
+//   }
+// }
 
 .bounce-in-top {
   animation: bounce-in-top 1s both;

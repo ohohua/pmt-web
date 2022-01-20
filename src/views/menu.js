@@ -19,7 +19,7 @@ export function createMenu() {
             }
           },
           {
-            default: () => '症状描述'
+            default: () => '寻医问诊'
           }
         ),
       key:'symptom',
@@ -51,7 +51,7 @@ export function createMenu() {
             }
           },
           {
-            default: () => '社区'
+            default: () => '社区交流'
           }
         ),
       key:'community',

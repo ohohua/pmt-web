@@ -1,9 +1,9 @@
 <template>
   <n-card
     class="lr-login-form"
-    v-if="isActive"
+    v-if="props.isActive"
     hoverable
-    :class="{ 'bounce-in-top': isActive }"
+    :class="{ 'bounce-in-top': props.isActive }"
     :segmented="{
       content: true,
       footer: 'soft',
@@ -62,17 +62,23 @@
     </template>
   </n-card>
 
-  <div v-else @click="handleOpenLogin" class="call-dragon">login</div>
 </template>
 
 <script setup>
 import api from "@/api";
-import { ref } from "vue";
-import { useMessage  } from "naive-ui";
+import { ref, defineProps,watch } from "vue";
+import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
 import { useRouter } from "vue-router";
-import { encryp } from '@utils/index'
+import { encryp } from "@utils/index";
+const props = defineProps({
+  isActive: {
+    type: Boolean,
+    default: false
+  },
+});
+const emit = defineEmits(['yingyangActive']);
 const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
@@ -80,14 +86,15 @@ const model = ref({
   username: "admin",
   password: "123456",
 });
-const isActive = ref(false);
-const handleOpenLogin = () => {
-  isActive.value = true;
-};
+
 const handleLogin = () => {
   const params = {
     username: model.value.username,
-    password: encryp('1234123412ABCDEF','1234123412ABCDEF',model.value.password)
+    password: encryp(
+      "1234123412ABCDEF",
+      "1234123412ABCDEF",
+      model.value.password
+    ),
   };
   formRef.value.validate((errors) => {
     if (!errors) {
@@ -95,16 +102,17 @@ const handleLogin = () => {
         .login(params)
         .then((res) => {
           message.success("登录成功！");
-          window.localStorage.setItem('COMMAND_CENTER_token', res.data.token);
+          window.localStorage.setItem("COMMAND_CENTER_token", res.data.token);
           router.push({ name: "index" });
         })
         .catch((e) => {
           console.log(e);
-          message.error(e.error.response.data.data.error || '登录失败！')
+          message.error(e.error.response.data.data.error || "登录失败！");
         });
     }
   });
 };
+watch(() => props.isActive, () => emit('yingyangActive'));
 </script>
 
 <style lang="scss">
@@ -120,14 +128,4 @@ const handleLogin = () => {
   }
 }
 
-.call-dragon {
-  width: 100px;
-  height: 100px;
-  background-color: royalblue;
-  border-radius: 50px;
-  text-align: center;
-  line-height: 100px;
-  color: #ffffff;
-  margin: 180px auto;
-}
 </style>
