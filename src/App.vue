@@ -1,6 +1,6 @@
 <script setup>
   import { dateZhCN, zhCN } from 'naive-ui';
-
+  import lrLoadingBar from '@components/lr-loading-bar.vue'
   const themeOverrides = {
     common: {
       fontWeightStrong: '600',
@@ -19,6 +19,7 @@
         </transition>
       </router-view>
       </n-message-provider>
+      <lr-loading-bar />
     </n-loading-bar-provider>
   </n-config-provider>
 </template>

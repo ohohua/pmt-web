@@ -1,5 +1,6 @@
 <template>
   <header class="lr-header f ai-c">
+    <div>logo</div>
     <n-menu
       v-model:value="activeKey"
       mode="horizontal"
