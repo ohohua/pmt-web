@@ -8,7 +8,6 @@ const handleSelect = (val) => {
   if(val === 'profile') {}
   if(val === 'editProfile') {}
   if(val === 'logout') {
-    console.log(router);
     router.push({name: 'login'});
     window.localStorage.clear();
   }

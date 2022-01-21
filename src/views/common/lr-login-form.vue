@@ -26,9 +26,9 @@
           clearable
         >
           <template #prefix>
-            <n-icon>
+            <Icon>
               <InprivateAccount16Filled />
-            </n-icon>
+            </Icon>
           </template>
         </n-input>
       </n-form-item>
@@ -43,9 +43,9 @@
           clearable
         >
           <template #prefix>
-            <n-icon>
+            <Icon>
               <LockClosed24Filled />
-            </n-icon>
+            </Icon>
           </template>
         </n-input>
       </n-form-item>
@@ -70,6 +70,7 @@ import { ref, defineProps,watch } from "vue";
 import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
+import { Icon } from '@vicons/utils';
 import { useRouter } from "vue-router";
 import { encryp } from "@utils/index";
 const props = defineProps({
