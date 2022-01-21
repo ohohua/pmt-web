@@ -1,14 +1,18 @@
 <script setup>
-import { ref } from "vue";
+import { ref, defineExpose } from "vue";
 const current = ref(1);
 const handleStep = () => {
   if (current.value === null) current.value = 1;
   else if (current.value >= 4) current.value = null;
   else current.value++;
 };
+// setup语法中，必须这样暴露，父组件中的ref才能访问到
+defineExpose({
+  handleStep,
+})
 </script>
 <template>
-  <n-card @click="handleStep" hoverable>
+  <n-card hoverable>
     <n-steps :current="current" size="small" style="width: 500px; margin: 0 auto;">
       <n-step title="选择医生"/>
       <n-step title="填写信息"/>

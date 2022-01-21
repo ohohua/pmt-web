@@ -66,7 +66,7 @@
 
 <script setup>
 import api from "@/api";
-import { ref, defineProps,watch } from "vue";
+import { ref,watch } from "vue";
 import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";

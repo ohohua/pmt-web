@@ -5,6 +5,9 @@ import { FiberNewFilled as NewIcon } from "@vicons/material";
 import { Icon } from "@vicons/utils";
 import symptomDoctorItem from "./symptom-doctor-item.vue";
 import { ref } from 'vue';
+
+const emit = defineEmits(['showRight']);
+
 const SortByNumberHandle = () => {};
 const SortByFireHandle = () => {};
 const SortByNewestHandle = () => {};
@@ -15,10 +18,11 @@ const its = [
   {
     id: 2
   }
-]
+];
 const isShrink = ref(false);
 const ItemHandle = (id) => {
   isShrink.value = true;
+  emit('showRight');
 }
 </script>
 
