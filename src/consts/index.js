@@ -44,3 +44,39 @@ export const dropdownMenuOptions = [
     icon: renderIcon(LogoutIcon)
   }
 ]
+
+export const messageRule = {
+  name: {
+    required: true,
+    message: '请输入姓名',
+    trigger: 'blur'
+  },
+  age: {
+    required: true,
+    message: '请输入年龄',
+    trigger: 'blur'
+  }
+}
+
+export const bloodOptions = [
+  {
+    label: 'A型',
+    value: '1'
+  },
+  {
+    label: 'B型',
+    value: '2'
+  },
+  {
+    label: 'O型',
+    value: '3'
+  },
+  {
+    label: 'AB型',
+    value: '4'
+  },
+  {
+    label: '不想',
+    value: '0'
+  },
+]
