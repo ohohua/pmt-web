@@ -52,8 +52,24 @@ export const messageRule = {
     trigger: 'blur'
   },
   age: {
+    type: 'number',
     required: true,
-    message: '请输入年龄',
+    trigger: ['blur', 'change'],
+    message: '请选择出生日期',
+  },
+  phone: {
+    required: true,
+    message: '请输入电话号码',
+    trigger: 'blur'
+  },
+  bloodType: {
+    required: true,
+    message: '请输入血型',
+    trigger: ['blur', 'change']
+  },
+  sex: {
+    required: true,
+    message: '请选择性别',
     trigger: 'blur'
   }
 }

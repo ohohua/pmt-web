@@ -30,6 +30,7 @@ const ItemHandle = (id) => {
   <n-card
     title="生死肉骨"
     size="small"
+    hoverable
     :segmented="{ content: true }"
     :class="{f: true, contentWidth: isShrink}"
   >

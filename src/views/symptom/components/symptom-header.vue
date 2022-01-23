@@ -3,7 +3,7 @@ import { ref, defineExpose } from "vue";
 const current = ref(1);
 const handleStep = () => {
   if (current.value === null) current.value = 1;
-  else if (current.value >= 4) current.value = null;
+  else if (current.value >= 4) return;
   else current.value++;
 };
 // setup语法中，必须这样暴露，父组件中的ref才能访问到
