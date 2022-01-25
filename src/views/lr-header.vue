@@ -7,7 +7,7 @@
         mode="horizontal"
         :options="menuOptions"
       />
-      <lr-header-right />
+      <lr-header-right @changeMenu="changeMenu"/>
     </div>
   </header>
 </template>
@@ -19,6 +19,10 @@ import { ref } from "vue";
 
 const activeKey = ref("symptom");
 const menuOptions = createMenu();
+
+const changeMenu = () => {
+  activeKey.value = null;
+}
 </script>
 
 <style lang="scss">

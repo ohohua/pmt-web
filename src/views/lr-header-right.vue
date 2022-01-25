@@ -2,11 +2,18 @@
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
 import { dropdownMenuOptions } from "@consts/index.js";
 import { useRouter } from "vue-router";
+const emit = defineEmits(['changeMenu']);
 const router = useRouter();
 const src = "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg";
 const handleSelect = (val) => {
-  if(val === 'profile') {}
-  if(val === 'editProfile') {}
+  if(val === 'editProfile') {
+    emit('changeMenu');
+    router.push({name: 'editProfile'})
+  }
+  if(val === 'profile') {
+    emit('changeMenu');
+    router.push({name: 'profile'})
+  }
   if(val === 'logout') {
     router.push({name: 'login'});
     window.localStorage.clear();

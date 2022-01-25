@@ -26,14 +26,14 @@ const routes = [
     path: '/index',
     name: 'index',
     component: views['index'],
-    redirect:{ name: 'symptom' },
+    redirect: { name: 'symptom' },
     meta: {
       title: '主页'
     },
     children: [
       {
         path: '/index/symptom',
-        name:'symptom',
+        name: 'symptom',
         component: views['symptom/symptom'],
         meta: {
           title: '症状描述'
@@ -41,7 +41,7 @@ const routes = [
       },
       {
         path: '/index/questionnaire',
-        name:'questionnaire',
+        name: 'questionnaire',
         component: views['questionnaire/questionnaire'],
         meta: {
           title: '心理测试'
@@ -49,12 +49,28 @@ const routes = [
       },
       {
         path: '/index/community',
-        name:'community',
+        name: 'community',
         component: views['community/community'],
         meta: {
           title: '社区'
         }
       },
+      {
+        path: '/index/profile',
+        name: 'profile',
+        component: views['profile/profile'],
+        meta: {
+          title: '个人中心'
+        }
+      },
+      {
+        path: '/index/editProfile',
+        name: 'editProfile',
+        component: views['profile/edit-profile'],
+        meta: {
+          title: '个人设置'
+        }
+      }
     ]
   },
 ];

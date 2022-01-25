@@ -12,8 +12,14 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const store = pinia.useCommonStore();
   store.loadingStart();
-  if(to.fullPath === '/index' && from.fullPath === '/login') {}
-  next();
+
+  if (to.path === '/login') {
+    next()
+  } else if (!window.localStorage.getItem('COMMAND_CENTER_token')) {
+    next({ name: 'login' })
+  } else {
+    next();
+  } 
 });
 
 router.afterEach((to, from) => {
