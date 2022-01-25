@@ -2,6 +2,9 @@
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
 import { dropdownMenuOptions } from "@consts/index.js";
 import { useRouter } from "vue-router";
+import api from '@api';
+import { reactive } from 'vue';
+
 const emit = defineEmits(['changeMenu']);
 const router = useRouter();
 const src = "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg";
@@ -16,9 +19,22 @@ const handleSelect = (val) => {
   }
   if(val === 'logout') {
     router.push({name: 'login'});
-    window.localStorage.clear();
+    window.sessionStorage.clear();
   }
 };
+const message = reactive({
+  src: null,
+  nickname: null,
+})
+const profileMessage = () => {
+  api.header.userInfo().then(res => {
+    message.nickname = res.data.nickname;
+    // message.value = res.data.src;
+  }).catch(e => {
+    console.log(e);
+  })
+};
+profileMessage()
 </script>
 
 <template>
@@ -45,7 +61,7 @@ const handleSelect = (val) => {
     >
       <div class="f ai-c cp">
         <n-avatar size="small" round :src="src" />
-        <span class="ml12">lorcoding</span>
+        <span class="ml12">{{ message.nickname  }}</span>
       </div>
     </n-dropdown>
   </div>

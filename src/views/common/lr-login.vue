@@ -27,11 +27,11 @@ const handleYY = () => {
   right: 0;
   top: 0;
   bottom: 0;
-  // background: url("@/assets/login-bg.png") no-repeat center center fixed;
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover;
+  background: url("@/assets/login-bg.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
   .yinyang {
     position: absolute;

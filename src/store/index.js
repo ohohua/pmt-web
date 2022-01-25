@@ -1,7 +1,7 @@
 /**
  * how to ues store
  * import { pinia } from '@store/index.js
- * const store = store.useCommonStore()
+ * const store = pinia.useCommonStore()
  */
 export const pinia = (() => {
   const modules = import.meta.globEager('./modules/*.js');

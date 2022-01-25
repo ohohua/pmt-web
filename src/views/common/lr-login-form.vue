@@ -58,28 +58,27 @@
 
     <template #footer>
       Not a member?
-      <n-button text type="primary">Create Account</n-button>
+      <n-button text type="primary" @click="register">Create Account</n-button>
     </template>
   </n-card>
-
 </template>
 
 <script setup>
 import api from "@/api";
-import { ref,watch } from "vue";
+import { ref, watch } from "vue";
 import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
-import { Icon } from '@vicons/utils';
+import { Icon } from "@vicons/utils";
 import { useRouter } from "vue-router";
 import { encryp } from "@utils/index";
 const props = defineProps({
   isActive: {
     type: Boolean,
-    default: false
+    default: false,
   },
 });
-const emit = defineEmits(['yingyangActive']);
+const emit = defineEmits(["yingyangActive"]);
 const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
@@ -103,7 +102,7 @@ const handleLogin = () => {
         .login(params)
         .then((res) => {
           message.success("登录成功！");
-          window.localStorage.setItem("COMMAND_CENTER_token", res.data.token);
+          window.sessionStorage.setItem("COMMAND_CENTER_token", res.data.token);
           router.push({ name: "index" });
         })
         .catch((e) => {
@@ -113,7 +112,14 @@ const handleLogin = () => {
     }
   });
 };
-watch(() => props.isActive, () => emit('yingyangActive'));
+
+const register = () => {
+  router.push({ name: "register" });
+};
+watch(
+  () => props.isActive,
+  () => emit("yingyangActive")
+);
 </script>
 
 <style lang="scss">
@@ -128,5 +134,4 @@ watch(() => props.isActive, () => emit('yingyangActive'));
     text-align: center;
   }
 }
-
 </style>

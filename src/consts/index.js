@@ -64,7 +64,7 @@ export const messageRule = {
   },
   bloodType: {
     required: true,
-    message: '请输入血型',
+    message: '请选择血型',
     trigger: ['blur', 'change']
   },
   sex: {
@@ -96,3 +96,42 @@ export const bloodOptions = [
     value: '0'
   },
 ]
+
+export const accountTypeOptions = [
+  {
+    label: '患者',
+    value: 'patient',
+  },
+  {
+    label: '医生',
+    value: 'doctor',
+  }
+];
+
+export const registerRule = {
+  username: {
+    required: true,
+    message: '请输入账号',
+    trigger: 'blur'
+  },
+  password: {
+    required: true,
+    message: '请输入密码',
+    trigger: 'blur'
+  },
+  password_2: {
+    required: true,
+    message: '请输入密码',
+    trigger: 'blur'
+  },
+  nickname: {
+    required: true,
+    message: '请输入昵称',
+    trigger: 'blur'
+  },
+  role: {
+    required: true,
+    message: '请选择账号类型',
+    trigger: ['blur', 'change']
+  },
+}

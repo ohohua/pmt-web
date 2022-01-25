@@ -18,7 +18,7 @@ const catchError = (error) => {
 };
 
 http.interceptors.request.use((config) => {
-  config.headers['token'] = localStorage.getItem('COMMAND_CENTER_token');
+  config.headers['token'] = sessionStorage.getItem('COMMAND_CENTER_token');
   return config;
 })
 

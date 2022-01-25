@@ -23,6 +23,14 @@ const routes = [
     }
   },
   {
+    path:'/register',
+    name: 'register',
+    component: views['common/register'],
+    meta: {
+      title: '注册'
+    }
+  },
+  {
     path: '/index',
     name: 'index',
     component: views['index'],

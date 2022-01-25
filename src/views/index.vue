@@ -9,6 +9,11 @@
 
 <script setup>
 import lrHeader from "./lr-header.vue";
+import { pinia } from '@store/index.js';
+
+const store = pinia.useUserStore();
+store.loadProfileMessage();
+
 </script>
 
 <style lang="scss">
