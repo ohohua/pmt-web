@@ -6,5 +6,5 @@ export default {
    * null
    * @returns Promise
    */
-  userInfo: () => http.get(`${baseUrl}/auth`),
+  userInfo: () => http.get(`${baseUrl}/user`),
 }

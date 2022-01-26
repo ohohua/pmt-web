@@ -1,13 +1,11 @@
 <script setup>
 import { reactive } from "vue";
-import { useMessage } from 'naive-ui';
-const message = useMessage();
+
 const emit = defineEmits(['describe'])
 const form = reactive({
   symptom: null,
 });
 const symptomHandle = () => {
-  message.success('提交成功')
   emit('describe', form);
 }
 </script>

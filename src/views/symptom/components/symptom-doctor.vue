@@ -5,25 +5,27 @@ import { FiberNewFilled as NewIcon } from "@vicons/material";
 import { Icon } from "@vicons/utils";
 import symptomDoctorItem from "./symptom-doctor-item.vue";
 import { ref } from 'vue';
+import api from '@api';
 
 const emit = defineEmits(['showRight']);
 
 const SortByNumberHandle = () => {};
 const SortByFireHandle = () => {};
 const SortByNewestHandle = () => {};
-const its = [
-  {
-    id: 1
-  },
-  {
-    id: 2
-  }
-];
+const its = ref(null);
 const isShrink = ref(false);
 const ItemHandle = (id) => {
   isShrink.value = true;
-  emit('showRight');
+  emit('showRight', id);
+};
+const loadDoctorInfo = () => {
+  api.symptom.doctorInfo({role: "doctor"}).then(res => {
+    its.value = res.data;
+  }).catch(e => {
+    console.error(e);
+  })
 }
+loadDoctorInfo();
 </script>
 
 <template>
@@ -64,7 +66,7 @@ const ItemHandle = (id) => {
     </template>
     <n-scrollbar style="max-height: calc(100vh - 210px);">
       <n-space >
-        <symptom-doctor-item v-for="it in its" key="it.id" @click="ItemHandle(it.id)"/>
+        <symptom-doctor-item v-for="it in its" key="it.id" @click="ItemHandle(it.username)" :doctor="it"/>
       </n-space>
     </n-scrollbar>
   </n-card>

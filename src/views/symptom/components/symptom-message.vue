@@ -42,6 +42,7 @@
             v-model:value="form.age"
             type="date"
             clearable
+            :is-date-disabled="disablePreviousDate"
           />
         </n-form-item-gi>
         <n-form-item-gi :span="8" label="性别" path="sex">
@@ -58,9 +59,11 @@
     </n-form>
   </n-card>
 </template>
+
 <script setup>
 import { ref, reactive } from "vue";
 import { messageRule, bloodOptions } from "@consts/index.js";
+
 const emit = defineEmits(["messageForm"]);
 const formRef = ref(null);
 const form = reactive({
@@ -79,6 +82,7 @@ const nextHandle = () => {
   formRef.value.validate((errors) => {
     if (!errors) {
       shrink.value = true;
+      form.age = form.age / 1000; // unix转成秒级的
       emit("messageForm", form);
     } else {
       console.log(errors);

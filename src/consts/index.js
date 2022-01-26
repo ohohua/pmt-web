@@ -77,23 +77,23 @@ export const messageRule = {
 export const bloodOptions = [
   {
     label: 'A型',
-    value: '1'
+    value: 'A型'
   },
   {
     label: 'B型',
-    value: '2'
+    value: 'B型'
   },
   {
     label: 'O型',
-    value: '3'
+    value: 'O型'
   },
   {
     label: 'AB型',
-    value: '4'
+    value: 'AB型'
   },
   {
-    label: '不想',
-    value: '0'
+    label: '不详',
+    value: '不详'
   },
 ]
 
