@@ -15,14 +15,16 @@
 <script setup>
 import lrHeaderRight from "./lr-header-right.vue";
 import { createMenu } from "./menu.js";
-import { ref } from "vue";
-
-const activeKey = ref("symptom");
+import { ref, watchEffect } from "vue";
+import { useRoute } from 'vue-router'
+const route = useRoute();
+const activeKey = ref(null);
 const menuOptions = createMenu();
 
 const changeMenu = () => {
   activeKey.value = null;
 }
+watchEffect(() => activeKey.value = route.path.substring(7));
 </script>
 
 <style lang="scss">

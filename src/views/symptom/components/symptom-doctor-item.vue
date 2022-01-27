@@ -63,7 +63,7 @@ const updateMessage = () => {
                 <ThumbIcon />
               </Icon>
               <span style="margin-left: 3px" :class="{ isActive: flag}">{{
-                props.doctor.praiseQuantity
+                props.doctor.praiseQuantity === 0 ? "" : props.doctor.praiseQuantity 
               }}</span>
             </div>
           </template>

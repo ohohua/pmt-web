@@ -18,7 +18,8 @@ const symptomHandle = () => {
           v-model:value="form.symptom"
           type="textarea"
           placeholder="描述个人病情"
-          :maxlength="11"
+          maxlength="200" 
+          show-count
         />
       </n-form-item>
       <n-form-item>

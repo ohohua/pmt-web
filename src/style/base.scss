@@ -52,6 +52,13 @@ li {
 }
 
 /* 宽度 */
+.w100 {
+  width: 100px;
+}
+.w200 {
+  width: 200px;
+}
+
 .w220 {
   width: 220px;
 }
@@ -59,7 +66,14 @@ li {
 .w500 {
   width: 500px;
 }
+
+.w1000 {
+  width: 1000px;
+}
 /* 左外边距 */
+.ml5 {
+  margin-left: 5px;
+}
 .ml10 {
   margin-left: 10px;
 }
@@ -118,6 +132,10 @@ li {
   margin-bottom: 8px;
 }
 
+.mb10 {
+  margin-bottom: 10px;
+}
+
 .mb12 {
   margin-bottom: 12px;
 }
@@ -152,6 +170,10 @@ li {
 
 .pd10 {
   padding: 10px;
+}
+
+.m0a {
+  margin: 0 auto;
 }
 // .n-data-table-thead {
 //   position: relative;
