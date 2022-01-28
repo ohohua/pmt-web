@@ -25,9 +25,11 @@ const HandleSortByFire = (e) => {
             <Icon size="large" class="cp">
               <ShareIcon />
             </Icon>
+            <div class="division-line"></div>
             <Icon size="large" class="cp">
               <CommentIcon />
             </Icon>
+            <div class="division-line"></div>
             <div :class="{ isActive: flag }" @click="HandleSortByFire">
               <Icon size="large" class="cp">
                 <ThumbIcon />
@@ -45,5 +47,13 @@ const HandleSortByFire = (e) => {
 <style lang="scss">
 .isActive {
   color: rgb(24, 160, 88);
+
+  .division-line {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    
+    // border: black 1px solid;
+  }
 }
 </style>

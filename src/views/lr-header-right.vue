@@ -2,9 +2,12 @@
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
 import { dropdownMenuOptions } from "@consts/index.js";
 import { useRouter } from "vue-router";
+import todoList from './header-right/todo-list.vue'
 import api from '@api';
 import { reactive } from 'vue';
+import { pinia } from '@store/index.js';
 
+const store = pinia.useUserStore();
 const emit = defineEmits(['changeMenu']);
 const router = useRouter();
 const src = "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg";
@@ -46,11 +49,9 @@ profileMessage()
         </n-badge>
       </template>
       <n-tabs type="line" size="small">
-        <template #prefix></template>
         <n-tab-pane name="notice" tab="通知">通知</n-tab-pane>
         <n-tab-pane name="message" tab="消息">消息</n-tab-pane>
-        <n-tab-pane name="todo" tab="待办">待办</n-tab-pane>
-        <template #suffix></template>
+        <n-tab-pane name="todo" tab="待办" v-if="store.role !== 'patient'"><todoList/></n-tab-pane>
       </n-tabs>
     </n-popover>
 

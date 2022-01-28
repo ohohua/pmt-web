@@ -3,8 +3,19 @@ const baseUrl = '/pmt-api';
 export default {
   name: 'header',
   /**
-   * null
+   * 获取用户信息
    * @returns Promise
    */
   userInfo: () => http.get(`${baseUrl}/user`),
+  /**
+   * 获取医生所属的病人
+   * @returns Promise
+   */
+  underDoc: () => http.get(`${baseUrl}/user/underDoc`), 
+  /**
+   * 通过病人username获取病例信息
+   * @param {username} params 
+   * @returns 
+   */
+  loadByName: (params) => http.get(`${baseUrl}/user/loadByName`, {params}), 
 }

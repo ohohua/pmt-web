@@ -13,9 +13,9 @@ router.beforeEach((to, from, next) => {
   const store = pinia.useCommonStore();
   store.loadingStart();
 
-  if (to.path === '/login') {
+  if (to.path === '/login' || to.path === '/register') {
     next()
-  } else if (!window.localStorage.getItem('COMMAND_CENTER_token')) {
+  } else if (!window.sessionStorage.getItem('COMMAND_CENTER_token')) {
     next({ name: 'login' })
   } else {
     next();

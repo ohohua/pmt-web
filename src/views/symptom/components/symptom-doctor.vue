@@ -4,14 +4,32 @@ import { BonfireSharp as BonfireSharpIcon } from "@vicons/ionicons5";
 import { FiberNewFilled as NewIcon } from "@vicons/material";
 import { Icon } from "@vicons/utils";
 import symptomDoctorItem from "./symptom-doctor-item.vue";
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import api from '@api';
 
 const emit = defineEmits(['showRight']);
 
-const SortByNumberHandle = () => {};
-const SortByFireHandle = () => {};
-const SortByNewestHandle = () => {};
+const loading = ref(false);
+
+const params = reactive({
+  role: "doctor",
+  sort: null,
+  isNew: false,
+});
+const SortByNumberHandle = () => {
+  params.isNew = false;
+  params.sort = 'answerNumber';
+  loadDoctorInfo();
+};
+const SortByFireHandle = () => {
+  params.isNew = false;
+  params.sort = 'praiseQuantity';
+  loadDoctorInfo();
+};
+const SortByNewestHandle = () => {
+  params.isNew = true;
+  loadDoctorInfo();
+};
 const its = ref(null);
 const isShrink = ref(false);
 const ItemHandle = (id) => {
@@ -19,8 +37,10 @@ const ItemHandle = (id) => {
   emit('showRight', id);
 };
 const loadDoctorInfo = () => {
-  api.symptom.doctorInfo({role: "doctor"}).then(res => {
+  loading.value = true;
+  api.symptom.doctorInfo(params).then(res => {
     its.value = res.data;
+    loading.value = false;
   }).catch(e => {
     console.error(e);
   })
@@ -65,7 +85,8 @@ loadDoctorInfo();
       </div>
     </template>
     <n-scrollbar style="max-height: calc(100vh - 210px);">
-      <n-space >
+    <n-skeleton text v-if="loading" size="large" round :repeat="19"/>
+      <n-space v-else>
         <symptom-doctor-item v-for="it in its" key="it.id" @click="ItemHandle(it.username)" :doctor="it"/>
       </n-space>
     </n-scrollbar>

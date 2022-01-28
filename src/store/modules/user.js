@@ -14,6 +14,9 @@ export const useUserStore = defineStore('user', {
     }
   }),
   getters: {
+    account() {
+      return this._account;
+    },
     role() {
       return this._role;
     },

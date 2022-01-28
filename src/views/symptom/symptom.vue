@@ -6,11 +6,14 @@ import symptomDescribe from "./components/symptom-describe.vue";
 import { useMessage } from 'naive-ui';
 import { ref, reactive } from "vue";
 import api from "@api";
+import { pinia } from '@store/index';
 
+const store = pinia.useUserStore();
 const message = useMessage();
 const headerRef = ref(null);
 const params = reactive({
-  username: null, // 医生账号
+  username: null, // 用户账号
+  doctorUsername: null, // 医生账号
   name: null, // 患者name
   phone: null, // 患者电话号码
   bloodType: null, // 患者血型
@@ -19,11 +22,11 @@ const params = reactive({
 });
 const messageIsActive = ref(false);
 const describeActive = ref(false);
-const showRight = (username) => {
+const showRight = (doctorUsername) => {
   if (!messageIsActive.value) {
     headerRef.value.handleStep();
   }
-  Object.assign(params, { username: username });
+  Object.assign(params, { doctorUsername: doctorUsername });
   messageIsActive.value = true;
 };
 const messageForm = (message) => {
@@ -37,9 +40,9 @@ const describe = (describe) => {
   Object.assign(params, describe);
   headerRef.value.handleStep();
   saveSymptom();
-  console.log(params);
 };
 const saveSymptom = () => {
+  params.username = store.account;
   api.symptom
     .saveSymptom(params)
     .then((res) => {

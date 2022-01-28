@@ -78,6 +78,14 @@ const routes = [
         meta: {
           title: '个人设置'
         }
+      },
+      {
+        path: '/index/receive/:username',
+        name: 'receive',
+        component: views['header-right/receive'],
+        meta: {
+          title: '医生接诊'
+        }
       }
     ]
   },
