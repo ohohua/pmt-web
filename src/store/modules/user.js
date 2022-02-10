@@ -6,7 +6,7 @@ export const useUserStore = defineStore('user', {
     _account: null,
     _role: null, // root | patient | doctor
     _nickname: null,
-    _url: null,
+    _avatar: null,
     _doctor: {
       _praiseQuantity: null, // 点赞数量
       _answerNumber: null, // 回答数量
@@ -24,7 +24,7 @@ export const useUserStore = defineStore('user', {
       return this._nickname;
     },
     url() {
-      return this._url;
+      return this._avatar;
     },
     doctor() {
       return this._doctor;
@@ -36,7 +36,7 @@ export const useUserStore = defineStore('user', {
         this._account = res.data.username;
         this._nickname = res.data.nickname;
         this._role = res.data.role;
-        // this._url = res.data.url;
+        this._avatar = res.data.avatar;
         this._doctor._praiseQuantity = res.data.praiseQuantity;
         this._doctor._answerNumber = res.data.answerNumber;
         this._doctor._isNew = res.data.isNew;

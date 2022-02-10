@@ -18,4 +18,10 @@ export default {
    * @returns 
    */
   loadByName: (params) => http.get(`${baseUrl}/user/loadByName`, {params}), 
+  /**
+   * 更改用户信息
+   * @param {Object} data 
+   * @returns 
+   */
+  uploadUser: (data) => http.post(`${baseUrl}/user/upload`, data), 
 }
