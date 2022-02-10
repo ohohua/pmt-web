@@ -23,8 +23,11 @@ export const useUserStore = defineStore('user', {
     nickname() {
       return this._nickname;
     },
-    url() {
-      return this._avatar;
+    avatar() {
+      if (!this._avatar) {
+        return 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg';
+      } else
+        return this._avatar;
     },
     doctor() {
       return this._doctor;

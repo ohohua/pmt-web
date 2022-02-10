@@ -3,14 +3,11 @@ import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
 import { dropdownMenuOptions } from "@consts/index.js";
 import { useRouter } from "vue-router";
 import todoList from './header-right/todo-list.vue'
-import api from '@api';
-import { reactive } from 'vue';
 import { pinia } from '@store/index.js';
 
 const store = pinia.useUserStore();
 const emit = defineEmits(['changeMenu']);
 const router = useRouter();
-const src = "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg";
 const handleSelect = (val) => {
   if(val === 'editProfile') {
     emit('changeMenu');
@@ -25,19 +22,7 @@ const handleSelect = (val) => {
     window.sessionStorage.clear();
   }
 };
-const message = reactive({
-  src: null,
-  nickname: null,
-})
-const profileMessage = () => {
-  api.header.userInfo().then(res => {
-    message.nickname = res.data.nickname;
-    // message.value = res.data.src;
-  }).catch(e => {
-    console.log(e);
-  })
-};
-profileMessage()
+
 </script>
 
 <template>
@@ -61,8 +46,8 @@ profileMessage()
       :options="dropdownMenuOptions"
     >
       <div class="f ai-c cp">
-        <n-avatar size="small" round :src="src" />
-        <span class="ml12">{{ message.nickname  }}</span>
+        <n-avatar size="small" round :src="store.avatar" />
+        <span class="ml12">{{ store.nickname  }}</span>
       </div>
     </n-dropdown>
   </div>

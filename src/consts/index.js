@@ -135,3 +135,16 @@ export const registerRule = {
     trigger: ['blur', 'change']
   },
 }
+
+export const userRule = {
+  username: {
+    required: true,
+    message: '请输入用户名',
+    trigger: 'blur'
+  },
+  nickname: {
+    required: true,
+    message: '请输入昵称',
+    trigger: 'blur'
+  },
+}

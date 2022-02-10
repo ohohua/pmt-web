@@ -19,6 +19,7 @@ const params = reactive({
   bloodType: null, // 患者血型
   age: null, // 出生日期
   sex: null, // 性别
+  response: "",
 });
 const messageIsActive = ref(false);
 const describeActive = ref(false);

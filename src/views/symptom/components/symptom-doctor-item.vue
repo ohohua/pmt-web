@@ -5,7 +5,7 @@ import { FiberNewFilled as NewIcon } from "@vicons/material";
 import { Icon } from "@vicons/utils";
 import api from "@api";
 import { ref } from 'vue';
-
+import { pinia } from '@store/index.js'
 const props = defineProps({
   doctor: {
     type: Object,
@@ -40,7 +40,7 @@ const updateMessage = () => {
     class="doctor-item cp"
   >
     <div class="f ai-c">
-      <n-avatar size="small" round :src="src" />
+      <n-avatar size="small" round :src="props.doctor.avatar" />
       <span class="ml12">{{ props.doctor.nickname }}</span>
     </div>
     <template #footer>

@@ -83,7 +83,7 @@ const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
 const model = ref({
-  username: "admin",
+  username: "lirui",
   password: "123456",
 });
 

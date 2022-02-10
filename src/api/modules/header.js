@@ -23,5 +23,5 @@ export default {
    * @param {Object} data 
    * @returns 
    */
-  uploadUser: (data) => http.post(`${baseUrl}/user/upload`, data), 
+  uploadUser: (data) => http.put(`${baseUrl}/user/updateUser`, data), 
 }

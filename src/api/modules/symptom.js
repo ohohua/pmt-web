@@ -18,5 +18,5 @@ export default {
    * @param {username, praiseQuantity | answerNumber} data 
    * @returns 
    */
-  updatePraise: (data) => http.put(`${baseUrl}/user/update`, data),
+  updatePraise: (data) => http.put(`${baseUrl}/user/updateDetail`, data),
 }

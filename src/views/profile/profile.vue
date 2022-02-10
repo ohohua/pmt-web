@@ -6,10 +6,9 @@ import { computed } from "vue";
 import { pinia } from "@store/index";
 import { Icon } from "@vicons/utils";
 
-const src = "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg";
 const store = pinia.useUserStore();
 const role = computed(() => store.role);
-const url = computed(() => store.url);
+const avatar = computed(() => store.avatar);
 const nickname = computed(() => store.nickname);
 const doctor = computed(() => store.doctor);
 </script>
@@ -19,7 +18,7 @@ const doctor = computed(() => store.doctor);
     <div class="f h0 f1">
       <n-card class="f1">
         <div style="text-align: center">
-          <n-avatar round :size="150" :src="src" />
+          <n-avatar round :size="150" :src="avatar" />
           <h2 class="mt20">
             {{ nickname }}
             <Icon v-if="doctor._isNew">
