@@ -4,6 +4,7 @@ import { createCols } from "./cols.js";
 import api from "@api";
 import { ref } from "vue";
 
+const emit = defineEmits(['todoList']);
 const store = pinia.useUserStore();
 const data = ref([]);
 const cols = createCols();
@@ -12,6 +13,7 @@ const loadTodo = () => {
     .underDoc()
     .then((res) => {
       data.value = res.data;
+      emit('todoList', data.value.length);
     })
     .catch((e) => console.log(e));
 };

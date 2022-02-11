@@ -24,4 +24,10 @@ export default {
    * @returns 
    */
   uploadUser: (data) => http.put(`${baseUrl}/user/updateUser`, data), 
+  /**
+   * 
+   * @param {*} data 
+   * @returns 
+   */
+  saveResponse: (data) => http.post(`${baseUrl}/user/saveResponse`, data),
 }

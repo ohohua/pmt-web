@@ -15,6 +15,7 @@ const model = reactive({
   password_2: null,
   nickname: null,
   role: null,
+  avatar:""
 });
 const registerHandle = () => {
   formRef.value.validate((err) => {
