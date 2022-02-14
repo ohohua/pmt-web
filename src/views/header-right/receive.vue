@@ -1,9 +1,12 @@
 <script setup>
 import { ref, watchEffect } from "vue";
-import { useRoute } from "vue-router";
-
+import { useRoute, useRouter } from "vue-router";
+import { pinia } from "@store/index.js";
 import api from "@api";
+
+const store = pinia.useUserStore();
 const route = useRoute();
+const router = useRouter();
 const patientMessage = ref({
   name: null,
   sex: null,
@@ -28,8 +31,21 @@ const response = ref(null);
 
 const submitHandle = () => {
   api.header
-    .saveResponse({response: response.value, username: route.params.username})
-    .then((res) => {})
+    .saveResponse({ response: response.value, username: route.params.username })
+    .then((res) => {
+      if (res.code === 0) {
+        const data = {
+          username: store.account,
+          answerNumber: store.doctor._answerNumber + 1,
+        };
+        api.symptom
+          .updatePraise(data)
+          .then(() => {
+            router.push({ name: "profile" });
+          })
+          .catch((e) => console.log(e));
+      }
+    })
     .catch((e) => console.log(e));
 };
 </script>

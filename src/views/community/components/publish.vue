@@ -3,10 +3,36 @@ import { Emoji24Regular as EmojiIcon } from "@vicons/fluent";
 import { PictureOutlined as Picture } from "@vicons/antd";
 import { Icon } from "@vicons/utils";
 import { ref, watch } from "vue";
+import api from "@api";
+import { pinia } from '@store/index.js';
+import { useMessage } from 'naive-ui';
 
+const message = useMessage()
+const store = pinia.useUserStore();
+const emit = defineEmits(['publishHandle'])
 const isDisable = ref(true);
 const content = ref(null);
-const handleOutput = () => {};
+const handleOutput = () => {
+  const data = {
+    content: content.value,
+    praiseQuantity: 0,
+    nickname: store.nickname,
+    avatar: store.avatar
+  }
+  api.header
+    .saveCommunity(data)
+    .then((res) => {
+      if(res.code === 0) {
+        message.success('评论成功！')
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    }).finally(() => {
+      content.value = null;
+      emit('publishHandle');
+    });
+};
 const handleInput = () => {
   isDisable.value = false;
 };
@@ -19,7 +45,6 @@ watch(
     isDisable.value = true;
   }
 );
-
 </script>
 
 <template>
