@@ -7,6 +7,7 @@ import { ref } from "vue";
 import api from "@api";
 import { pinia } from "@store/index.js";
 import { useMessage } from "naive-ui";
+import dayjs from "dayjs";
 
 const message = useMessage();
 const store = pinia.useUserStore();
@@ -29,7 +30,7 @@ const HandleSortByFire = (e) => {
 };
 const updateMessage = () => {
   const data = {
-    userId: props.it.userId,
+    id: props.it.id,
     praiseQuantity: props.it.praiseQuantity,
   };
   api.header.updatePraise(data).catch((e) => console.log(e));
@@ -60,8 +61,15 @@ const subCommentHandle = (id) => {
 
 // 复制评论
 const copyHandle = () => {
-  console.log(`${props.it.content} #心理医疗系统# ${location.href}`);
-}
+  const text = `${props.it.content} #心理医疗系统# ${location.href}`;
+  if (navigator.clipboard) {
+    // clipboard api 复制
+    navigator.clipboard.writeText(text);
+    message.success("复制成功！");
+  } else {
+    message.info("复制失败！");
+  }
+};
 </script>
 
 <template>
@@ -69,7 +77,13 @@ const copyHandle = () => {
     <div class="f ai-c cp">
       <n-avatar size="small" round :src="props.it.avatar" />
       <span class="ml12">{{ props.it.nickname }}</span>
-      {{ props.it.createTime }}
+      <span class="ml12" style="color: #8b8b8b">{{
+        `${
+          dayjs().diff(dayjs(props.it.createTime), "hour") > 24
+            ? dayjs().diff(dayjs(props.it.createTime), "day") + "天前"
+            : dayjs().diff(dayjs(props.it.createTime), "hour") + "小时前"
+        }`
+      }}</span>
     </div>
     <div class="ml40 mt20" style="color: #8b8b8b">{{ props.it.content }}</div>
     <template #footer>

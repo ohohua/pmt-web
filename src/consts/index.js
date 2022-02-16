@@ -148,3 +148,12 @@ export const userRule = {
     trigger: 'blur'
   },
 }
+/**
+ * 转化事件格式
+ * @param { 2022-02-14T09:39:36.118Z } date 
+ * @returns 2022-02-14 17:39:36
+ */
+export function rTime(date) {
+  var json_date = new Date(date).toJSON();
+  return new Date(+new Date(json_date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+}

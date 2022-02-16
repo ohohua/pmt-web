@@ -1,15 +1,16 @@
 <script setup>
+import emoji from "@components/emoji.vue";
 import { Emoji24Regular as EmojiIcon } from "@vicons/fluent";
 import { PictureOutlined as Picture } from "@vicons/antd";
 import { Icon } from "@vicons/utils";
 import { ref, watch } from "vue";
 import api from "@api";
-import { pinia } from '@store/index.js';
-import { useMessage } from 'naive-ui';
+import { pinia } from "@store/index.js";
+import { useMessage } from "naive-ui";
 
-const message = useMessage()
+const message = useMessage();
 const store = pinia.useUserStore();
-const emit = defineEmits(['publishHandle'])
+const emit = defineEmits(["publishHandle"]);
 const isDisable = ref(true);
 const content = ref(null);
 const handleOutput = () => {
@@ -17,20 +18,21 @@ const handleOutput = () => {
     content: content.value,
     praiseQuantity: 0,
     nickname: store.nickname,
-    avatar: store.avatar
-  }
+    avatar: store.avatar,
+  };
   api.header
     .saveCommunity(data)
     .then((res) => {
-      if(res.code === 0) {
-        message.success('评论成功！')
+      if (res.code === 0) {
+        message.success("评论成功！");
       }
     })
     .catch((e) => {
       console.log(e);
-    }).finally(() => {
+    })
+    .finally(() => {
       content.value = null;
-      emit('publishHandle');
+      emit("publishHandle");
     });
 };
 const handleInput = () => {
@@ -45,6 +47,14 @@ watch(
     isDisable.value = true;
   }
 );
+
+const face = (face) => {
+  if (!content.value) {
+    content.value = face;
+  } else {
+    content.value += face;
+  }
+};
 </script>
 
 <template>
@@ -60,11 +70,20 @@ watch(
     <!--  -->
     <div class="f jc-sb mt10 ai-c">
       <div class="w200 f jc-sb">
-        <span class="cp f ai-c isHover">
-          <Icon size="large">
-            <EmojiIcon />
-          </Icon>
-          <span class="ml5">表情</span>
+        <span class="cp isHover">
+          <n-popover
+            placement="bottom"
+            trigger="click"
+            :style="{ width: '300px' }"
+          >
+            <template #trigger>
+              <div class="f ai-c">
+                <Icon size="large"> <EmojiIcon /> </Icon
+                ><span class="ml5">表情</span>
+              </div>
+            </template>
+            <emoji @faceEmit="face" />
+          </n-popover>
         </span>
         <span class="cp f ai-c isHover">
           <Icon size="large">
