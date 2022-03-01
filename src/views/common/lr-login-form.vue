@@ -1,15 +1,14 @@
 <template>
   <n-card
-    class="lr-login-form"
-    v-if="props.isActive"
+    class="lr-login-form bounce-in-top"
     hoverable
-    :class="{ 'bounce-in-top': props.isActive }"
     :segmented="{
       content: true,
       footer: 'soft',
     }"
+    :bordered="false"
   >
-    <h2>Login</h2>
+    <h2 style="color: #FFFFFF;">Login</h2>
     <n-form
       :model="model"
       ref="formRef"
@@ -22,7 +21,6 @@
           v-model:value="model.username"
           round
           :maxlength="10"
-          placeholder="username"
           clearable
         >
           <template #prefix>
@@ -38,7 +36,6 @@
           :maxlength="10"
           round
           type="password"
-          placeholder="password"
           show-password-on="mousedown"
           clearable
         >
@@ -50,14 +47,14 @@
         </n-input>
       </n-form-item>
       <n-form-item>
-        <n-button @click="handleLogin" type="primary" round style="width: 100%"
+        <n-button @click="handleLogin"  round style="width: 100%; " class="text-sty"
           >登录</n-button
         >
       </n-form-item>
     </n-form>
 
     <template #footer>
-      Not a member?
+      <span style="color: #FFFFFF;">Not a member ？</span>
       <n-button text type="primary" @click="register">Create Account</n-button>
     </template>
   </n-card>
@@ -72,19 +69,13 @@ import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
 import { Icon } from "@vicons/utils";
 import { useRouter } from "vue-router";
 import { encryp } from "@utils/index";
-const props = defineProps({
-  isActive: {
-    type: Boolean,
-    default: false,
-  },
-});
-const emit = defineEmits(["yingyangActive"]);
+
 const router = useRouter();
 const formRef = ref(null);
 const message = useMessage();
 const model = ref({
-  username: "lirui",
-  password: "123456",
+  username: "",
+  password: "",
 });
 
 const handleLogin = () => {
@@ -116,22 +107,27 @@ const handleLogin = () => {
 const register = () => {
   router.push({ name: "register" });
 };
-watch(
-  () => props.isActive,
-  () => emit("yingyangActive")
-);
+
 </script>
 
 <style lang="scss">
 .lr-login-form {
   width: 400px;
-  margin: 180px auto;
+  background-color: transparent;
+
   h2 {
     text-align: center;
     margin-bottom: 50px;
   }
   .n-card__footer {
     text-align: center;
+  }
+
+    .text-sty {
+    color: #FFFFFF;
+    &:hover {
+      color: rgb(24, 160, 88);
+    }
   }
 }
 </style>

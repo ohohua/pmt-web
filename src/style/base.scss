@@ -4,7 +4,7 @@
 //   -moz-background-size: cover;
 //   -o-background-size: cover;
 //   background-size: cover;
-// }
+//  }
 * {
   margin: 0;
   padding: 0;
@@ -175,23 +175,7 @@ li {
 .m0a {
   margin: 0 auto;
 }
-// .n-data-table-thead {
-//   position: relative;
 
-//   &:before {
-//     content: '';
-//     display: block;
-//     border: 1px solid #1c33ad;
-//     position: absolute;
-//     z-index: 999;
-//     left: 0;
-//     top: 0;
-//     bottom: 0;
-//     right: 0;
-//     user-select: none;
-//     pointer-events: none;
-//   }
-// }
 
 .bounce-in-top {
   animation: bounce-in-top 1s both;
@@ -244,5 +228,18 @@ li {
   100% {
     transform: translateZ(-1100px);
     opacity: 0;
+  }
+}
+
+.bg-pan-left {
+  animation: color-change-2x 8s linear infinite alternate both;
+  
+}
+@keyframes color-change-2x {
+  0% {
+    background: #19dcea;
+  }
+  100% {
+    background: #b22cff;
   }
 }

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
 import { Icon } from "@vicons/utils";
 import { ref, reactive } from "vue";
@@ -39,12 +39,13 @@ const fileList = ref([]);
 const backHandle = () => {
   router.push({ name: "login" });
 };
+
 </script>
 
 <template>
-  <div class="register h100p w100p f ai-c jc-c">
-    <n-card class="w500">
-      <h2>Register</h2>
+  <div class="register h100p w100p f ai-c jc-c bg-pan-left">
+    <n-card class="w500 card" :bordered="false" hoverable embedded="true">
+      <h2 style="color: #FFFFFF;">Register</h2>
       <n-form
         label-placement="left"
         :model="model"
@@ -54,7 +55,7 @@ const backHandle = () => {
         require-mark-placement="right-hanging"
       >
         <n-form-item path="username" label="账号">
-          <n-input v-model:value="model.username" :maxlength="10" clearable>
+          <n-input v-model:value="model.username" :maxlength="10" clearable round>
             <template #prefix>
               <Icon>
                 <InprivateAccount16Filled />
@@ -69,6 +70,7 @@ const backHandle = () => {
             type="password"
             show-password-on="mousedown"
             clearable
+            round
           >
             <template #prefix>
               <Icon>
@@ -84,6 +86,7 @@ const backHandle = () => {
             type="password"
             show-password-on="mousedown"
             clearable
+            round
           >
             <template #prefix>
               <Icon>
@@ -94,7 +97,7 @@ const backHandle = () => {
         </n-form-item>
 
         <n-form-item path="nickname" label="昵称">
-          <n-input v-model:value="model.nickname" :maxlength="10" clearable>
+          <n-input v-model:value="model.nickname" :maxlength="10" clearable round>
           </n-input>
         </n-form-item>
         <n-form-item label="账号类型" path="role">
@@ -102,6 +105,7 @@ const backHandle = () => {
             :options="accountTypeOptions"
             v-model:value="model.role"
             clearable
+            round
           ></n-select>
         </n-form-item>
         <n-form-item label="资质证明" v-if="model.role === 'doctor'">
@@ -111,12 +115,12 @@ const backHandle = () => {
             list-type="image"
             :create-thumbnail-url="createThumbnailUrl"
           >
-            <n-button>上传文件</n-button>
+            <n-button type="default" class="text-sty">上传文件</n-button>
           </n-upload>
         </n-form-item>
         <n-form-item>
           <div class="w100p f jc-sa">
-            <n-button type="tertiary" @click="backHandle" style="width: 150px"
+            <n-button type="tertiary" @click="backHandle" style="width: 150px;" class="text-sty "
               >返回</n-button
             >
             <n-button
@@ -134,9 +138,30 @@ const backHandle = () => {
 
 <style lang="scss">
 .register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   h2 {
     text-align: center;
     margin-bottom: 50px;
+  }
+  .card {
+    background-color: transparent;
+  }
+
+  .text-sty {
+    color: #FFFFFF;
+    &:hover {
+      color: rgb(24, 160, 88);
+    }
+  }
+
+  .n-form-item-label {
+    color: #FFFFFF;
   }
 }
 </style>

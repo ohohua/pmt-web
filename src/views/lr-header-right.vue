@@ -2,24 +2,24 @@
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
 import { dropdownMenuOptions } from "@consts/index.js";
 import { useRouter } from "vue-router";
-import todoList from './header-right/todo-list.vue'
-import { pinia } from '@store/index.js';
-import { ref } from 'vue';
+import todoList from "./header-right/todo-list.vue";
+import { pinia } from "@store/index.js";
+import { ref } from "vue";
 
 const store = pinia.useUserStore();
-const emit = defineEmits(['changeMenu']);
+const emit = defineEmits(["changeMenu"]);
 const router = useRouter();
 const handleSelect = (val) => {
-  if(val === 'editProfile') {
-    emit('changeMenu');
-    router.push({name: 'editProfile'})
+  if (val === "editProfile") {
+    emit("changeMenu");
+    router.push({ name: "editProfile" });
   }
-  if(val === 'profile') {
-    emit('changeMenu');
-    router.push({name: 'profile'})
+  if (val === "profile") {
+    emit("changeMenu");
+    router.push({ name: "profile" });
   }
-  if(val === 'logout') {
-    router.push({name: 'login'});
+  if (val === "logout") {
+    router.push({ name: "login" });
     window.sessionStorage.clear();
   }
 };
@@ -27,7 +27,7 @@ const handleSelect = (val) => {
 const badgeLength = ref(0);
 const todoListLength = (val) => {
   badgeLength.value = val;
-}
+};
 </script>
 
 <template>
@@ -41,7 +41,9 @@ const todoListLength = (val) => {
       <n-tabs type="line" size="small">
         <n-tab-pane name="notice" tab="通知">通知</n-tab-pane>
         <n-tab-pane name="message" tab="消息">消息</n-tab-pane>
-        <n-tab-pane name="todo" tab="待办" v-if="store.role !== 'patient'"><todoList @todo-list="todoListLength"/></n-tab-pane>
+        <n-tab-pane name="todo" tab="待办" v-if="store.role !== 'patient'"
+          ><todoList @todo-list="todoListLength"
+        /></n-tab-pane>
       </n-tabs>
     </n-popover>
 
@@ -52,10 +54,19 @@ const todoListLength = (val) => {
     >
       <div class="f ai-c cp">
         <n-avatar size="small" round :src="store.avatar" />
-        <span class="ml12">{{ store.nickname  }}</span>
+        <span class="ml12 nicknameStyle">{{ store.nickname }}</span>
       </div>
     </n-dropdown>
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.nicknameStyle {
+  width: 80px;
+  text-overflow: ellipsis; /*只是起到注解作用*/
+
+  white-space: nowrap; /*不让文本换行*/
+
+  overflow: hidden; /*超出的部分显示...*/
+}
+</style>

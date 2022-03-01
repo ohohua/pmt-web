@@ -72,7 +72,7 @@ const face = (face) => {
       <div class="w200 f jc-sb">
         <span class="cp isHover">
           <n-popover
-            placement="bottom"
+            placement="bottom-start"
             trigger="click"
             :style="{ width: '300px' }"
           >

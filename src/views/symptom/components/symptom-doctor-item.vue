@@ -97,5 +97,8 @@ const updateMessage = () => {
   .isActive {
     color: rgb(24, 160, 88);
   }
+  &:hover {
+    color: rgb(24, 160, 88);
+  }
 }
 </style>
