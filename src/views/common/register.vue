@@ -15,7 +15,7 @@ const model = reactive({
   password_2: null,
   nickname: null,
   role: null,
-  avatar:""
+  avatar: "",
 });
 const registerHandle = () => {
   formRef.value.validate((err) => {
@@ -39,13 +39,12 @@ const fileList = ref([]);
 const backHandle = () => {
   router.push({ name: "login" });
 };
-
 </script>
 
 <template>
   <div class="register h100p w100p f ai-c jc-c bg-pan-left">
-    <n-card class="w500 card" :bordered="false" hoverable embedded="true">
-      <h2 style="color: #FFFFFF;">Register</h2>
+    <n-card class="w400 card" :bordered="false"  embedded="true">
+      <h2 style="color: #ffffff">注册</h2>
       <n-form
         label-placement="left"
         :model="model"
@@ -54,8 +53,14 @@ const backHandle = () => {
         :rules="registerRule"
         require-mark-placement="right-hanging"
       >
-        <n-form-item path="username" label="账号">
-          <n-input v-model:value="model.username" :maxlength="10" clearable round>
+        <n-form-item path="username">
+          <n-input
+            v-model:value="model.username"
+            :maxlength="10"
+            clearable
+            round
+            placeholder="账号"
+          >
             <template #prefix>
               <Icon>
                 <InprivateAccount16Filled />
@@ -63,7 +68,7 @@ const backHandle = () => {
             </template>
           </n-input>
         </n-form-item>
-        <n-form-item path="password" label="密码">
+        <n-form-item path="password" >
           <n-input
             v-model:value="model.password"
             :maxlength="10"
@@ -71,6 +76,7 @@ const backHandle = () => {
             show-password-on="mousedown"
             clearable
             round
+            placeholder="密码"
           >
             <template #prefix>
               <Icon>
@@ -79,7 +85,7 @@ const backHandle = () => {
             </template>
           </n-input>
         </n-form-item>
-        <n-form-item label="确认密码" path="password_2">
+        <n-form-item  path="password_2">
           <n-input
             v-model:value="model.password_2"
             :maxlength="10"
@@ -87,6 +93,7 @@ const backHandle = () => {
             show-password-on="mousedown"
             clearable
             round
+            placeholder="确认密码"
           >
             <template #prefix>
               <Icon>
@@ -96,16 +103,23 @@ const backHandle = () => {
           </n-input>
         </n-form-item>
 
-        <n-form-item path="nickname" label="昵称">
-          <n-input v-model:value="model.nickname" :maxlength="10" clearable round>
+        <n-form-item path="nickname" >
+          <n-input
+            v-model:value="model.nickname"
+            :maxlength="10"
+            clearable
+            round
+            placeholder="昵称"
+          >
           </n-input>
         </n-form-item>
-        <n-form-item label="账号类型" path="role">
+        <n-form-item path="role">
           <n-select
             :options="accountTypeOptions"
             v-model:value="model.role"
             clearable
             round
+            placeholder="账号类型"
           ></n-select>
         </n-form-item>
         <n-form-item label="资质证明" v-if="model.role === 'doctor'">
@@ -120,7 +134,11 @@ const backHandle = () => {
         </n-form-item>
         <n-form-item>
           <div class="w100p f jc-sa">
-            <n-button type="tertiary" @click="backHandle" style="width: 150px;" class="text-sty "
+            <n-button
+              type="tertiary"
+              @click="backHandle"
+              style="width: 150px"
+              class="text-sty"
               >返回</n-button
             >
             <n-button
@@ -150,18 +168,32 @@ const backHandle = () => {
     margin-bottom: 50px;
   }
   .card {
-    background-color: transparent;
+    // background-color: transparent;
+    background: rgba(221, 226, 223, 0.1);
+    box-shadow: 0 0 0 1px rgba(235, 231, 231, 0.3) inset,
+      0 0.5em 1em rgb(0 0 0 / 60%);
   }
 
   .text-sty {
-    color: #FFFFFF;
+    color: #ffffff;
     &:hover {
       color: rgb(24, 160, 88);
     }
   }
 
   .n-form-item-label {
-    color: #FFFFFF;
+    color: #ffffff;
   }
+}
+
+.lr-login-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(20px);
 }
 </style>

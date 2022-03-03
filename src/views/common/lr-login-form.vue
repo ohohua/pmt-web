@@ -1,14 +1,13 @@
 <template>
   <n-card
     class="lr-login-form bounce-in-top"
-    hoverable
     :segmented="{
       content: true,
       footer: 'soft',
     }"
     :bordered="false"
   >
-    <h2 style="color: #FFFFFF;">Login</h2>
+    <h2 style="color: #FFFFFF;">登录</h2>
     <n-form
       :model="model"
       ref="formRef"
@@ -22,6 +21,7 @@
           round
           :maxlength="10"
           clearable
+          placeholder="账号"
         >
           <template #prefix>
             <Icon>
@@ -38,6 +38,7 @@
           type="password"
           show-password-on="mousedown"
           clearable
+          placeholder="密码"
         >
           <template #prefix>
             <Icon>
@@ -113,8 +114,8 @@ const register = () => {
 <style lang="scss">
 .lr-login-form {
   width: 400px;
-  background-color: transparent;
-
+  background: rgba(221, 226, 223, 0.1);
+  box-shadow: 0 0 0 1px rgba(235, 231, 231, 0.3) inset, 0 0.5em 1em rgb(0 0 0 / 60%);
   h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -130,4 +131,6 @@ const register = () => {
     }
   }
 }
+
+
 </style>

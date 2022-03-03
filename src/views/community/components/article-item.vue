@@ -85,7 +85,7 @@ const copyHandle = () => {
         }`
       }}</span>
     </div>
-    <div class="ml40 mt20" style="color: #8b8b8b">{{ props.it.content }}</div>
+    <div class="ml40 mt20" >{{ props.it.content }}</div>
     <template #footer>
       <div class="f jc-sb">
         <n-popover trigger="click" placement="bottom">

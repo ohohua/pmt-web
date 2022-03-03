@@ -25,6 +25,6 @@ store.loadProfileMessage();
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgb(240, 242, 245);
+  // background-color: rgb(240, 242, 245);
 }
 </style>

@@ -11,7 +11,7 @@
     </div>
   </div>
 </template>
-<script></script>
+
 <script setup>
 import { ref } from "vue";
 import appData from "@assets/emojis.json";

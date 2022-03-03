@@ -1,10 +1,10 @@
-// html {
-//   background: url('@/assets/login-bg.png') no-repeat center center fixed;
-//   -webkit-background-size: cover;
-//   -moz-background-size: cover;
-//   -o-background-size: cover;
-//   background-size: cover;
-//  }
+html {
+  background: url('@/assets/1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ }
 * {
   margin: 0;
   padding: 0;
@@ -62,7 +62,9 @@ li {
 .w220 {
   width: 220px;
 }
-
+.w400 {
+  width: 400px;
+}
 .w500 {
   width: 500px;
 }
@@ -232,14 +234,15 @@ li {
 }
 
 .bg-pan-left {
-  animation: color-change-2x 8s linear infinite alternate both;
-  
+  // animation: color-change-2x 8s linear infinite alternate both;
+  // background-image: linear-gradient(to left,
+  // #9c88ff,#3cadeb);
 }
-@keyframes color-change-2x {
-  0% {
-    background: #19dcea;
-  }
-  100% {
-    background: #b22cff;
-  }
-}
+// @keyframes color-change-2x {
+//   0% {
+//     background: #19dcea;
+//   }
+//   100% {
+//     background: #b22cff;
+//   }
+// }

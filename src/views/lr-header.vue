@@ -1,7 +1,7 @@
 <template>
   <header class="lr-header f ai-c jc-sb">
     <div class="cp f ai-c">
-      <img src="~@assets/title.png" alt="" class="logo"/>
+      <div class="logo">心理医疗系统</div>
     </div>
     <div class="f jc-sb ai-c" style="width: 600px">
       <n-menu
@@ -33,13 +33,15 @@ watchEffect(() => (activeKey.value = route.path.substring(7)));
 .lr-header {
   height: 48px;
   padding: 0 40px;
-  background-color: #ffffff;
+  background-color: #ffffff40;
   box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.08),
     0 3px 6px 0 rgba(0, 0, 0, 0.06), 0 5px 12px 4px rgba(0, 0, 0, 0.04);
 
   .logo {
     height: 25px;
     width: 160px;
+    font-size: large;
+    font-weight: 900;
   }
 }
 </style>
