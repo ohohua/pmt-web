@@ -26,7 +26,10 @@ const menuOptions = createMenu();
 const changeMenu = () => {
   activeKey.value = null;
 };
-watchEffect(() => (activeKey.value = route.path.substring(7)));
+watchEffect(() => {
+  console.log(route.path, route.path.substring(7))
+  activeKey.value = route.path.substring(7);
+});
 </script>
 
 <style lang="scss">

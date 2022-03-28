@@ -85,7 +85,7 @@ const copyHandle = () => {
         }`
       }}</span>
     </div>
-    <div class="ml40 mt20" >{{ props.it.content }}</div>
+    <div class="ml40 mt20">{{ props.it.content }}</div>
     <template #footer>
       <div class="f jc-sb">
         <n-popover trigger="click" placement="bottom">
@@ -113,19 +113,6 @@ const copyHandle = () => {
         </div>
       </div>
       <div class="sub-comment" v-if="showModal">
-        <div class="f jc-sb">
-          <n-avatar size="small" round :src="store.avatar" />
-          <n-input-group class="ml20" style="width: 900px">
-            <n-input maxlength="200" v-model:value="subComment" />
-            <n-button
-              type="primary"
-              ghost
-              @click="subCommentHandle(props.it.id)"
-            >
-              评论
-            </n-button>
-          </n-input-group>
-        </div>
         <div
           v-for="item in props.it.subComments"
           :key="item.id"
@@ -136,6 +123,18 @@ const copyHandle = () => {
             <span class="ml12">{{ item.nickname }}</span>
           </div>
           <div class="ml40 mt20" style="color: #8b8b8b">{{ item.content }}</div>
+        </div>
+        <div class="f jc-sb" style="margin-top: 20px">
+          <n-input-group class="ml20" style=" ;">
+            <n-input maxlength="200" v-model:value="subComment" />
+            <n-button
+              type="primary"
+              ghost
+              @click="subCommentHandle(props.it.id)"
+            >
+              评论
+            </n-button>
+          </n-input-group>
         </div>
       </div>
     </template>
@@ -153,7 +152,8 @@ const copyHandle = () => {
 
   &-content {
     border-bottom: 1px solid #efeff5;
-    background-color: #f7faf9;
+    // background-color: rgba($color: #bcf1b1, $alpha: .2) ;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(111, 206, 158, 0.3) 0px 18px 36px -18px inset;
     margin-left: 50px;
   }
 }

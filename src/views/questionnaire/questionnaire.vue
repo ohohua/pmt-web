@@ -1,11 +1,12 @@
+<!-- 问卷调查页面 -->
 <template>
   <div class="pd10 f jc-c" style="height: calc(100% - 30px);">
-    <quesType/>
+    <quesContent/>
   </div>
 </template>
 
 <script setup>
-import quesType from "./components/ques-type.vue";
+import quesContent from "./components/ques-content.vue";
 </script>
 
 <style lang="scss"></style>

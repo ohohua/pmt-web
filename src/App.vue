@@ -12,6 +12,7 @@ const themeOverrides = {
   },
   Card: {
     color: "#FFFFFF40",
+    actionColor: "FFFFFF40"
   },
   Popover: {
     color: "#FFFFFF40",
@@ -21,6 +22,9 @@ const themeOverrides = {
   },
   DataTable: {
     thColor: '#EFE8E800',
+  },
+  Modal: {
+    color: "#FFFFFF40",
   }
 };
 </script>
