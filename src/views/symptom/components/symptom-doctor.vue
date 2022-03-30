@@ -4,10 +4,11 @@ import { BonfireSharp as BonfireSharpIcon } from "@vicons/ionicons5";
 import { FiberNewFilled as NewIcon } from "@vicons/material";
 import { Icon } from "@vicons/utils";
 import symptomDoctorItem from "./symptom-doctor-item.vue";
-import { ref, reactive } from 'vue';
-import api from '@api';
+import { ref, reactive } from "vue";
+import { IosAirplane } from "@vicons/ionicons4";
+import api from "@api";
 
-const emit = defineEmits(['showRight']);
+const emit = defineEmits(["showRight"]);
 
 const loading = ref(false);
 
@@ -18,12 +19,12 @@ const params = reactive({
 });
 const SortByNumberHandle = () => {
   params.isNew = false;
-  params.sort = 'answerNumber';
+  params.sort = "answerNumber";
   loadDoctorInfo();
 };
 const SortByFireHandle = () => {
   params.isNew = false;
-  params.sort = 'praiseQuantity';
+  params.sort = "praiseQuantity";
   loadDoctorInfo();
 };
 const SortByNewestHandle = () => {
@@ -34,17 +35,20 @@ const its = ref(null);
 const isShrink = ref(false);
 const ItemHandle = (id) => {
   isShrink.value = true;
-  emit('showRight', id);
+  emit("showRight", id);
 };
 const loadDoctorInfo = () => {
   loading.value = true;
-  api.symptom.doctorInfo(params).then(res => {
-    its.value = res.data;
-    loading.value = false;
-  }).catch(e => {
-    console.error(e);
-  })
-}
+  api.symptom
+    .doctorInfo(params)
+    .then((res) => {
+      its.value = res.data;
+      loading.value = false;
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+};
 loadDoctorInfo();
 </script>
 
@@ -54,7 +58,7 @@ loadDoctorInfo();
     size="small"
     hoverable
     :segmented="{ content: true }"
-    :class="{f: true, contentWidth: isShrink}"
+    :class="{ f: true, contentWidth: isShrink }"
   >
     <template #header-extra>
       <div class="f jc-sb" style="width: 80px">
@@ -84,17 +88,33 @@ loadDoctorInfo();
         </n-tooltip>
       </div>
     </template>
-    <n-scrollbar style="max-height: calc(100vh - 210px);">
-    <n-skeleton text v-if="loading" size="large" round :repeat="19"/>
+    <n-scrollbar style="max-height: calc(100vh - 210px)">
+      <!-- <n-spin size="large" /> -->
+      <n-skeleton text v-if="loading" size="large" round :repeat="19" />
       <n-space v-else>
-        <symptom-doctor-item v-for="it in its" key="it.id" @click="ItemHandle(it.username)" :doctor="it"/>
+        <symptom-doctor-item
+          v-for="it in its"
+          key="it.id"
+          @click="ItemHandle(it.username)"
+          :doctor="it"
+        />
       </n-space>
+      <!-- <n-empty description="-" v-if="its?.length === 0" style="color: green;">
+        <template #icon>
+          <n-icon color="green" size="300">
+            <ios-airplane />
+          </n-icon>
+          <n-icon color="green" size="20">
+            医生还没有入驻~
+          </n-icon>
+        </template>
+      </n-empty> -->
     </n-scrollbar>
   </n-card>
 </template>
 
 <style lang="scss">
-  .contentWidth {
-    width: 450px;
-  }
+.contentWidth {
+  width: 450px;
+}
 </style>

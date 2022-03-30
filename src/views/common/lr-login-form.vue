@@ -7,7 +7,7 @@
     }"
     :bordered="false"
   >
-    <h2 style="color: #FFFFFF;">登录</h2>
+    <h2 style="color: #ffffff">登录</h2>
     <n-form
       :model="model"
       ref="formRef"
@@ -48,14 +48,18 @@
         </n-input>
       </n-form-item>
       <n-form-item>
-        <n-button @click="handleLogin"  round style="width: 100%; " class="text-sty"
+        <n-button
+          @click="handleLogin"
+          round
+          style="width: 100%"
+          class="text-sty"
           >登录</n-button
         >
       </n-form-item>
     </n-form>
 
     <template #footer>
-      <span style="color: #FFFFFF;">Not a member ？</span>
+      <span style="color: #ffffff">Not a member ？</span>
       <n-button text type="primary" @click="register">Create Account</n-button>
     </template>
   </n-card>
@@ -63,7 +67,7 @@
 
 <script setup>
 import api from "@/api";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useMessage } from "naive-ui";
 import { loginRule } from "@consts/index";
 import { LockClosed24Filled, InprivateAccount16Filled } from "@vicons/fluent";
@@ -115,7 +119,8 @@ const register = () => {
 .lr-login-form {
   width: 400px;
   background: rgba(221, 226, 223, 0.1);
-  box-shadow: 0 0 0 1px rgba(235, 231, 231, 0.3) inset, 0 0.5em 1em rgb(0 0 0 / 60%);
+  box-shadow: 0 0 0 1px rgba(235, 231, 231, 0.3) inset,
+    0 0.5em 1em rgb(0 0 0 / 60%);
   h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -124,13 +129,11 @@ const register = () => {
     text-align: center;
   }
 
-    .text-sty {
-    color: #FFFFFF;
+  .text-sty {
+    color: #ffffff;
     &:hover {
       color: rgb(24, 160, 88);
     }
   }
 }
-
-
 </style>

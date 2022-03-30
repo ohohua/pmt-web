@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineExpose } from "vue";
+import { ref } from "vue";
 const current = ref(1);
 const handleStep = () => {
   if (current.value === null) current.value = 1;
