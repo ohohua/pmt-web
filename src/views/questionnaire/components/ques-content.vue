@@ -50,19 +50,33 @@
       class="mt40"
     >
       <n-space vertical>
-        <n-radio-button value="A" class="w900 h50 lh50" >A. {{ subject[i]?.A }}</n-radio-button>
-        <n-radio-button value="B" class="w900 h50 lh50">B. {{ subject[i]?.B }}</n-radio-button>
-        <n-radio-button value="C" class="w900 h50 lh50">C. {{ subject[i]?.C }}</n-radio-button>
-        <n-radio-button value="D" class="w900 h50 lh50">D. {{ subject[i]?.D }}</n-radio-button>
+        <n-radio-button value="A" class="w900 h50 lh50"
+          >A. {{ subject[i]?.A }}</n-radio-button
+        >
+        <n-radio-button value="B" class="w900 h50 lh50"
+          >B. {{ subject[i]?.B }}</n-radio-button
+        >
+        <n-radio-button value="C" class="w900 h50 lh50"
+          >C. {{ subject[i]?.C }}</n-radio-button
+        >
+        <n-radio-button value="D" class="w900 h50 lh50"
+          >D. {{ subject[i]?.D }}</n-radio-button
+        >
       </n-space>
     </n-radio-group>
 
     <template #footer>
       <template class="f jc-fe">
         <n-space>
-          <n-button type="warning" style="width: 100px" @click="submitAnsHandle"
-            >提前交卷</n-button
+          <n-popconfirm
+            @positive-click="submitAnsHandle"
+            @negative-click="handleNegativeClick"
           >
+            <template #trigger>
+              <n-button type="warning" style="width: 100px">提前交卷</n-button>
+            </template>
+            确认提前交卷？
+          </n-popconfirm>
           <n-button
             type="primary"
             style="width: 100px"
@@ -113,13 +127,13 @@ import { useTime } from "@hooks/index.js";
 import { Play48Regular as play, Pause20Regular as pause } from "@vicons/fluent";
 import { Icon } from "@vicons/utils";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import api from "@api";
 import { useMessage } from "naive-ui";
 
-const router = useRouter();
 const message = useMessage();
 const { cur_time, pause_time, play_time } = useTime();
+const emit = defineEmits(["action"]);
+
 // 暂停&开始 标识
 const condition = ref(true);
 
@@ -136,7 +150,7 @@ const timeHandle = () => {
 
 const showModal = ref(false);
 const onNegativeClick = () => {
-  router.back();
+  emit('action');
 };
 const onPositiveClick = () => {
   play_time();
@@ -148,7 +162,7 @@ const onPositiveClick = () => {
 const sureBegin = ref(true);
 const loading = ref(false);
 const abandonHandle = () => {
-  router.back();
+  emit('action');
 };
 
 // 定义存储题目变量
@@ -190,7 +204,14 @@ const submitAnsHandle = () => {
       ansFromUser: it.res, // 选的答案
     };
   });
-  console.log(data);
+  api.questionnaire.submitAns(data).then((res) => {
+    if (res && res.code === 0) {
+      message.info(res.data);
+      pause_time();
+      condition.value = false;
+      emit('action');
+    }
+  });
 };
 </script>
 
