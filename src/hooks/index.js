@@ -1,5 +1,23 @@
 import { ref, toRefs } from 'vue';
+import { pinia } from '@store/index'
+import { h } from 'vue'
+import { NIcon } from 'naive-ui'
+import {
+  PersonCircleOutline as UserIcon,
+  Pencil as EditIcon,
+  LogOutOutline as LogoutIcon,
+  SettingsSharp as Settings
+} from '@vicons/ionicons5'
 
+const renderIcon = (icon) => {
+  return () => {
+    return h(NIcon, null, {
+      default: () => h(icon)
+    })
+  }
+}
+
+const store = pinia.useUserStore();
 // 计时hook
 export function useTime() {
   const cur_time = ref('00:00:00');
@@ -56,4 +74,50 @@ export function useTime() {
     play_time: playTime,
     restart_time: restart,
   };
+}
+
+export function useList() {
+  let dropdownMenuOptions = [
+    {
+      label: '个人中心',
+      key: 'profile',
+      icon: renderIcon(UserIcon)
+    },
+    {
+      label: '个人设置',
+      key: 'editProfile',
+      icon: renderIcon(EditIcon)
+    },
+    {
+      label: '退出登录',
+      key: 'logout',
+      icon: renderIcon(LogoutIcon)
+    }
+  ]
+
+  if (store.role === 'root') {
+    dropdownMenuOptions = [
+      {
+        label: '个人中心',
+        key: 'profile',
+        icon: renderIcon(UserIcon)
+      },
+      {
+        label: '个人设置',
+        key: 'editProfile',
+        icon: renderIcon(EditIcon)
+      },
+      {
+        label: '管理后台',
+        key: 'settings',
+        icon: renderIcon(Settings)
+      },
+      {
+        label: '退出登录',
+        key: 'logout',
+        icon: renderIcon(LogoutIcon)
+      }
+    ]
+  }
+  return dropdownMenuOptions;
 }

@@ -27,6 +27,7 @@ const registerHandle = () => {
       api["login-page"]
         .register(model)
         .then((res) => {
+          message.success('注册成功');
           console.log(res);
         })
         .catch((e) => {
@@ -184,6 +185,10 @@ const backHandle = () => {
   .n-form-item-label {
     color: #ffffff;
   }
+  .n-base-selection-label {
+    background-color: transparent;
+  }
+
 }
 
 .lr-login-form::before {

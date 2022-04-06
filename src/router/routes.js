@@ -86,6 +86,49 @@ const routes = [
         meta: {
           title: '医生接诊'
         }
+      },
+      {
+        path: '/index/settings',
+        name: 'settings',
+        component: views['settings/index'],
+        meta: {
+          title: '后台管理'
+        },
+        redirect: { name: 'user-manage' },
+        children: [
+          {
+            path: '/index/settings/user-manage',
+            name: 'user-manage',
+            component: views['settings/user-manage'],
+            meta: {
+              title: '用户管理'
+            }
+          },
+          {
+            path: '/index/settings/subject-manage',
+            name: 'subject-manage',
+            component: views['settings/subject-manage'],
+            meta: {
+              title: '题目管理'
+            }
+          },
+          {
+            path: '/index/settings/disease-manage',
+            name: 'disease-manage',
+            component: views['settings/disease-manage'],
+            meta: {
+              title: '病例管理'
+            }
+          },
+          {
+            path: '/index/settings/commit-manage',
+            name: 'commit-manage',
+            component: views['settings/commit-manage'],
+            meta: {
+              title: '评论管理'
+            }
+          }
+        ]
       }
     ]
   },

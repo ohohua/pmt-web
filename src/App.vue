@@ -12,7 +12,7 @@ const themeOverrides = {
   },
   Card: {
     color: "#FFFFFF40",
-    actionColor: "FFFFFF40"
+    actionColor: "FFFFFF40",
   },
   Popover: {
     color: "#FFFFFF40",
@@ -21,10 +21,22 @@ const themeOverrides = {
     color: "#FFFFFF40",
   },
   DataTable: {
-    thColor: '#EFE8E800',
+    thColor: "#EFE8E800",
   },
   Modal: {
     color: "#FFFFFF40",
+  },
+  Layout: {
+    color: "#FFFFFF00",
+    siderColor: "#FCFCFC00",
+    siderToggleButtonColor: "#FFFFFF91",
+    siderBorderColor: "rgba(255, 255, 255, 0)"
+  },
+  DataTable: {
+    thColor: "rgba(250, 250, 252, 10%)",
+    tdColor: "#FFFFFF00",
+    tdColorHover: "rgba(247, 247, 250, .1)",
+    tdTextColor: "rgba(112, 114, 116, 1)"
   }
 };
 </script>

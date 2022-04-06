@@ -4,7 +4,7 @@
     size="small"
     hoverable
     :segmented="{ content: true }"
-    :class="{ isShrink: shrink }"
+    :class="{ isShrink: shrink, 'sy-message': true }"
   >
     <n-form
       :label-width="80"
@@ -22,7 +22,7 @@
             clearable
           />
         </n-form-item-gi>
-        <n-form-item-gi :span="8" label="电话号码"  path="phone">
+        <n-form-item-gi :span="8" label="电话号码" path="phone">
           <n-input
             placeholder="电话号码"
             v-model:value="form.phone"
@@ -92,6 +92,18 @@ const nextHandle = () => {
 </script>
 
 <style lang="scss">
+.sy-message {
+  .n-base-selection-label {
+    background-color: transparent;
+  }
+  .n-base-selection-placeholder {
+    color: #ffffff;
+  }
+  
+  .n-radio__dot {
+    background-color: transparent;
+  }
+}
 .isShrink {
   height: 200px;
 }

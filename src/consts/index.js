@@ -1,19 +1,3 @@
-import { h } from 'vue'
-import { NIcon } from 'naive-ui'
-import {
-  PersonCircleOutline as UserIcon,
-  Pencil as EditIcon,
-  LogOutOutline as LogoutIcon
-} from '@vicons/ionicons5'
-
-const renderIcon = (icon) => {
-  return () => {
-    return h(NIcon, null, {
-      default: () => h(icon)
-    })
-  }
-}
-
 export const loginRule = {
   username: {
     required: true,
@@ -26,24 +10,6 @@ export const loginRule = {
     trigger: ["input", "blur"],
   },
 };
-
-export const dropdownMenuOptions = [
-  {
-    label: '个人中心',
-    key: 'profile',
-    icon: renderIcon(UserIcon)
-  },
-  {
-    label: '个人设置',
-    key: 'editProfile',
-    icon: renderIcon(EditIcon)
-  },
-  {
-    label: '退出登录',
-    key: 'logout',
-    icon: renderIcon(LogoutIcon)
-  }
-]
 
 export const messageRule = {
   name: {
@@ -149,7 +115,7 @@ export const userRule = {
   },
 }
 /**
- * 转化事件格式
+ * 转化时间格式
  * @param { 2022-02-14T09:39:36.118Z } date 
  * @returns 2022-02-14 17:39:36
  */

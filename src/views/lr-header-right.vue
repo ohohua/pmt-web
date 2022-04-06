@@ -1,6 +1,6 @@
 <script setup>
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
-import { dropdownMenuOptions } from "@consts/index.js";
+import { useList } from "@hooks/index.js";
 import { useRouter } from "vue-router";
 import todoList from "./header-right/todo-list.vue";
 import { pinia } from "@store/index.js";
@@ -9,6 +9,7 @@ import { ref } from "vue";
 const store = pinia.useUserStore();
 const emit = defineEmits(["changeMenu"]);
 const router = useRouter();
+const list = useList();
 const handleSelect = (val) => {
   if (val === "editProfile") {
     emit("changeMenu");
@@ -21,6 +22,9 @@ const handleSelect = (val) => {
   if (val === "logout") {
     router.push({ name: "login" });
     window.sessionStorage.clear();
+  }
+  if (val === "settings") {
+    router.push({name: 'settings'})
   }
 };
 
@@ -47,11 +51,7 @@ const todoListLength = (val) => {
       </n-tabs>
     </n-popover>
 
-    <n-dropdown
-      trigger="hover"
-      @select="handleSelect"
-      :options="dropdownMenuOptions"
-    >
+    <n-dropdown trigger="hover" @select="handleSelect" :options="list">
       <div class="f ai-c cp">
         <n-avatar size="small" round :src="store.avatar" />
         <span class="ml12 nicknameStyle">{{ store.nickname }}</span>

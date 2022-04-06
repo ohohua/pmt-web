@@ -43,9 +43,15 @@ const doctor = computed(() => store.doctor);
       </n-card>
       <n-card class="f2 ml10">
         <n-alert :show-icon="false" closable>
-          <span v-if="role === 'patient'">{{`你好，${nickname}，欢迎你使用医疗管理系统！`}}</span>
-          <span v-if="role === 'root'">{{`你好，超级管理员${nickname}`}}</span>
-          <span v-if="role === 'doctor'">{{`你好，${nickname}医生，欢迎你使用医疗管理系统！`}}</span>
+          <span v-if="role === 'patient'">{{
+            `你好，${nickname}，欢迎你使用医疗管理系统！`
+          }}</span>
+          <span v-if="role === 'root'">{{
+            `你好，超级管理员${nickname}`
+          }}</span>
+          <span v-if="role === 'doctor'">{{
+            `你好，${nickname}医生，欢迎你使用医疗管理系统！`
+          }}</span>
         </n-alert>
       </n-card>
     </div>
@@ -54,5 +60,8 @@ const doctor = computed(() => store.doctor);
 <style lang="scss">
 .profile {
   padding: 10px;
+  .n-alert {
+    background-color: transparent;
+  }
 }
 </style>
