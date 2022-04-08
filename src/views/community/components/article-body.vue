@@ -28,12 +28,10 @@ const handleBeforeLeave = (tabName) => {
 };
 
 const newHandle = () => {
-  console.log("new");
   type.value = "NEW";
   loadComment();
 };
 const hotHandle = () => {
-  console.log("new");
   type.value = "HOT";
   loadComment();
 };

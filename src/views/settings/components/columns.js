@@ -2,10 +2,11 @@ import { h, ref } from 'vue';
 import { NAvatar, NTag } from "naive-ui";
 
 
-export const userColumns = () => {
-  const itemHandle = (row) => {
-    console.log(row);
-  };
+export const userColumns = (fn) => {
+  // const itemHandle = (row) => {
+  //   console.log(row);
+  //   modal.showModal = true;
+  // };
   return ref([
     {
       type: "selection",
@@ -100,7 +101,7 @@ export const userColumns = () => {
               color: "#2080f0",
               fontSize: "13px",
             },
-            onClick: () => itemHandle(row),
+            onClick: () => fn(row),
           },
           {
             default: () => `编辑`,

@@ -102,7 +102,6 @@ const handleLogin = () => {
           router.push({ name: "index" });
         })
         .catch((e) => {
-          console.log(e);
           message.error(e.error.response.data.data.error || "登录失败！");
         });
     }

@@ -28,7 +28,6 @@ export const encryp = (key, iv, data) => {
 
 // 解密数据
 export const decrypt = (key, iv, encryptedVal) => {
-  console.log(CryptoJS);
   // 统一将传入的字符串转成UTF8编码
   let encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedVal);
   let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);

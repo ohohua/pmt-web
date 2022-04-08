@@ -1,6 +1,21 @@
 import { defineStore } from 'pinia';
 import api from '@api';
+import {
+  PersonCircleOutline as UserIcon,
+  Pencil as EditIcon,
+  LogOutOutline as LogoutIcon,
+  SettingsSharp as Settings,
+} from "@vicons/ionicons5";
+import { h } from "vue";
+import { NIcon } from "naive-ui";
 
+const renderIcon = (icon) => {
+  return () => {
+    return h(NIcon, null, {
+      default: () => h(icon),
+    });
+  };
+};
 export const useUserStore = defineStore('user', {
   state: () => ({
     _account: null,
@@ -11,7 +26,24 @@ export const useUserStore = defineStore('user', {
       _praiseQuantity: null, // 点赞数量
       _answerNumber: null, // 回答数量
       _isNew: false, // 是否是新人
-    }
+    },
+    _list: [
+      {
+        label: "个人中心",
+        key: "profile",
+        icon: renderIcon(UserIcon),
+      },
+      {
+        label: "个人设置",
+        key: "editProfile",
+        icon: renderIcon(EditIcon),
+      },
+      {
+        label: "退出登录",
+        key: "logout",
+        icon: renderIcon(LogoutIcon),
+      },
+    ]
   }),
   getters: {
     account() {
@@ -31,6 +63,9 @@ export const useUserStore = defineStore('user', {
     },
     doctor() {
       return this._doctor;
+    },
+    list() {
+      return this._list;
     }
   },
   actions: {
@@ -43,6 +78,48 @@ export const useUserStore = defineStore('user', {
         this._doctor._praiseQuantity = res.data.praiseQuantity;
         this._doctor._answerNumber = res.data.answerNumber;
         this._doctor._isNew = res.data.isNew;
+        if (res.data.role === 'root') {
+          this._list = [
+            {
+              label: "个人中心",
+              key: "profile",
+              icon: renderIcon(UserIcon),
+            },
+            {
+              label: "个人设置",
+              key: "editProfile",
+              icon: renderIcon(EditIcon),
+            },
+            {
+              label: "管理后台",
+              key: "settings",
+              icon: renderIcon(Settings),
+            },
+            {
+              label: "退出登录",
+              key: "logout",
+              icon: renderIcon(LogoutIcon),
+            },
+          ];
+        } else {
+          this._list = [
+            {
+              label: "个人中心",
+              key: "profile",
+              icon: renderIcon(UserIcon),
+            },
+            {
+              label: "个人设置",
+              key: "editProfile",
+              icon: renderIcon(EditIcon),
+            },
+            {
+              label: "退出登录",
+              key: "logout",
+              icon: renderIcon(LogoutIcon),
+            },
+          ]
+        }
       }).catch(e => {
         console.log(e);
       })

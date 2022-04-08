@@ -1,15 +1,17 @@
 <script setup>
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
-import { useList } from "@hooks/index.js";
 import { useRouter } from "vue-router";
 import todoList from "./header-right/todo-list.vue";
 import { pinia } from "@store/index.js";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 const store = pinia.useUserStore();
+const list = ref(store.list);
+watchEffect(() => {
+  list.value = store.list;
+});
 const emit = defineEmits(["changeMenu"]);
 const router = useRouter();
-const list = useList();
 const handleSelect = (val) => {
   if (val === "editProfile") {
     emit("changeMenu");
@@ -24,7 +26,7 @@ const handleSelect = (val) => {
     window.sessionStorage.clear();
   }
   if (val === "settings") {
-    router.push({name: 'settings'})
+    router.push({ name: "settings" });
   }
 };
 

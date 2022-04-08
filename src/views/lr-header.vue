@@ -27,7 +27,6 @@ const changeMenu = () => {
   activeKey.value = null;
 };
 watchEffect(() => {
-  console.log(route.path, route.path.substring(7))
   activeKey.value = route.path.substring(7);
 });
 </script>

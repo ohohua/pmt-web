@@ -16,7 +16,6 @@
 import { ref } from "vue";
 import appData from "@assets/emojis.json";
 const emit = defineEmits(['faceEmit'])
-console.log(appData);
 const faceList = ref([]); // 保存emoji的数组
 const faceContent = () => {
   for (let i in appData) {
@@ -24,10 +23,8 @@ const faceContent = () => {
   }
 };
 faceContent();
-console.log(faceList.value)
 // 获取用户点击之后的标签 ，存放到输入框内
 const getBrow = (index) => {
-  console.log(index);
   for (let i in faceList.value) {
     if (index == i) {
       emit('faceEmit', faceList.value[index]);
