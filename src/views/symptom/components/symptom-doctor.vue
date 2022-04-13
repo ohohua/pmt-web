@@ -54,7 +54,7 @@ loadDoctorInfo();
 
 <template>
   <n-card
-    title="生死肉骨"
+    title="选择医生"
     size="small"
     hoverable
     :segmented="{ content: true }"

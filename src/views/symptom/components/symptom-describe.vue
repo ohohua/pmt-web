@@ -11,7 +11,7 @@ const symptomHandle = () => {
 </script>
 
 <template>
-  <n-card title="有何贵干" size="small" :segmented="{ content: true }" hoverable>
+  <n-card title="描述症状" size="small" :segmented="{ content: true }" hoverable>
     <n-form label-placement="left">
       <n-form-item label="描述症状">
         <n-input

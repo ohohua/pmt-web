@@ -1,6 +1,6 @@
 <template>
   <n-card
-    title="姓甚名谁"
+    title="填写信息"
     size="small"
     hoverable
     :segmented="{ content: true }"

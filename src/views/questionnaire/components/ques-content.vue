@@ -22,7 +22,7 @@
   </n-modal>
 
   <n-card
-    title="最靠谱的测试"
+    title="心理测试"
     :segmented="{
       content: true,
       footer: 'soft',

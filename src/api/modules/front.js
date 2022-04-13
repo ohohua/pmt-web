@@ -25,4 +25,25 @@ export default {
    * @returns Promise
    */
   updateUser: (data) => http.post(`${baseUrl}/user/updateUser`, data),
+  /**
+   * 加载所有题目
+   * @returns Promise
+   */
+  loadAllSubject: (params) => http.get(`${baseUrl}/subject/loadAllSubject`, { params }),
+  /**
+   * 删除题目
+   */
+  delSubject: (data) => http.post(`${baseUrl}/subject/delSubject`, data),
+  /**
+ * 增加题目
+ * @param {object} data 
+ * @returns 
+ */
+  addSubject: (data) => http.post(`${baseUrl}/subject/addSubject`, data),
+  /**
+   * 更改题目信息
+   * @param {object} data 
+   * @returns Promise
+   */
+  updateSubject: (data) => http.post(`${baseUrl}/subject/updateSubject`, data),
 }

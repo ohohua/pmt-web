@@ -75,7 +75,7 @@
           <n-form-item label="权限" path="role">
             <n-select v-model:value="modal.data.role" :options="options" />
           </n-form-item>
-          <n-form-item label="点赞量" path="praiseQuantity">
+          <!-- <n-form-item label="点赞量" path="praiseQuantity">
             <n-input-number
               v-model:value="modal.data.praiseQuantity"
               placeholder="请输入点赞量"
@@ -86,7 +86,7 @@
               v-model:value="modal.data.answerNumber"
               placeholder="请输入回答数"
             />
-          </n-form-item>
+          </n-form-item> -->
           <n-form-item label="新人" path="isNew">
             <n-radio-group v-model:value="modal.data.isNew" name="isNew">
               <n-space>
@@ -153,11 +153,11 @@ const createData = () => {
     username: null,
     nickname: null,
     password: null,
-    avatar: "",
-    role: null,
-    praiseQuantity: null,
-    answerNumber: null,
-    isNew: null,
+    avatar: "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
+    role: "patient",
+    praiseQuantity: 0,
+    answerNumber: 0,
+    isNew: 0,
   };
 };
 const modal = reactive({
@@ -208,7 +208,6 @@ const addUser = () => {
 // 更改用户信息
 const updateUser = () => {
   const data = { ...modal.data };
-  console.log(data);
   api.front.updateUser(data).then((res) => {
     if (res && res.code === 0 && res.data !== "没有该账户！") {
       message.success(res.data);
