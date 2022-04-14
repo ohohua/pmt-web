@@ -2,12 +2,12 @@
   <div class="user-manage f fd-col h100p">
     <n-card class="f1 mb24">
       <n-space>
-        <n-input v-model:value="inputValue" placeholder="用户名" />
-        <n-button type="info" @click="loadUser">搜索</n-button>
-        <n-button type="primary" @click="openModal('add')">新增</n-button>
+        <n-input v-model:value="inputValue" placeholder="姓名" />
+        <n-button type="info" @click="loadDisease">搜索</n-button>
+        <!-- <n-button type="primary" @click="openModal('add')">新增</n-button> -->
         <n-button
           type="warning"
-          @click="delUser"
+          @click="delDisease"
           :disabled="checkedRowKeys.length === 0"
           >删除</n-button
         >
@@ -46,54 +46,49 @@
             maxWidth: '640px',
           }"
         >
-          <n-form-item label="用户名" path="username">
+          <n-form-item label="姓名" path="name">
+            <n-input v-model:value="modal.data.name" placeholder="请输入姓名" />
+          </n-form-item>
+          <n-form-item label="账号" path="username">
             <n-input
               v-model:value="modal.data.username"
-              placeholder="请输入用户名"
-              :disabled="modal.title === '修改'"
+              placeholder="请输入账号"
+              :disabled="true"
             />
           </n-form-item>
-          <n-form-item label="昵称" path="nickname">
+          <n-form-item label="年龄">
+            <n-input v-model:value="modal.data.age" placeholder="请输入年龄" />
+          </n-form-item>
+          <n-form-item label="性别" path="sex">
+            <n-select v-model:value="modal.data.sex" :options="optionsSex" />
+          </n-form-item>
+          <n-form-item label="血型" path="bloodType">
+            <n-select v-model:value="modal.data.bloodType" :options="options" />
+          </n-form-item>
+          <n-form-item label="电话" path="phone">
             <n-input
-              v-model:value="modal.data.nickname"
-              placeholder="请输入昵称"
+              v-model:value="modal.data.phone"
+              placeholder="请输入电话"
             />
           </n-form-item>
-          <n-form-item
-            label="密码"
-            path="password"
-            v-if="modal.title === '新增'"
-          >
+          <n-form-item label="症状" path="symptom">
             <n-input
-              v-model:value="modal.data.password"
-              placeholder="请输入密码"
+              v-model:value="modal.data.symptom"
+              placeholder="请输入症状"
             />
           </n-form-item>
-          <n-form-item label="头像" path="avatar" v-if="modal.title === '修改'">
-            <n-avatar round :src="modal.data.avatar" />
-          </n-form-item>
-          <n-form-item label="权限" path="role">
-            <n-select v-model:value="modal.data.role" :options="options" />
-          </n-form-item>
-          <n-form-item label="点赞量" path="praiseQuantity">
-            <n-input-number
-              v-model:value="modal.data.praiseQuantity"
-              placeholder="请输入点赞量"
+          <n-form-item label="医生建议" path="response">
+            <n-input
+              v-model:value="modal.data.response"
+              placeholder="请输入建议"
             />
           </n-form-item>
-          <n-form-item label="回答数" path="answerNumber">
-            <n-input-number
-              v-model:value="modal.data.answerNumber"
-              placeholder="请输入回答数"
+          <n-form-item label="诊断医生" path="doctorUsername">
+            <n-input
+              v-model:value="modal.data.doctorUsername"
+              placeholder="请输入诊断医生"
+              disabled="true"
             />
-          </n-form-item>
-          <n-form-item label="新人" path="isNew">
-            <n-radio-group v-model:value="modal.data.isNew" name="isNew">
-              <n-space>
-                <n-radio :value="0"> 新人 </n-radio>
-                <n-radio :value="1"> 老人 </n-radio>
-              </n-space>
-            </n-radio-group>
           </n-form-item>
         </n-form>
         <template #footer>
@@ -112,7 +107,7 @@
 <script setup>
 import { ref, reactive } from "vue";
 import empty from "@components/empty.vue";
-import { userColumns } from "./components/columns.js";
+import { diseaseColumns } from "./components/columns.js";
 import api from "@api";
 import { useMessage } from "naive-ui";
 
@@ -128,7 +123,7 @@ const openModal = (val) => {
   modal.showModal = true;
 };
 const message = useMessage();
-const columns = userColumns(openModal);
+const columns = diseaseColumns(openModal);
 const inputValue = ref(null);
 const loading = ref(false);
 const list = ref([]);
@@ -136,28 +131,47 @@ const checkedRowKeys = ref([]);
 const formRef = ref(null);
 const options = [
   {
-    label: "管理员",
-    value: "root",
+    label: "A型",
+    value: "A",
   },
   {
-    label: "医生",
-    value: "doctor",
+    label: "B型",
+    value: "B",
   },
   {
-    label: "患者",
-    value: "patient",
+    label: "AB型",
+    value: "C",
+  },
+  {
+    label: "O型",
+    value: "O",
+  },
+];
+const optionsSex = [
+  {
+    label: "男",
+    value: "男",
+  },
+  {
+    label: "女",
+    value: "女",
+  },
+  {
+    label: "未知",
+    value: "未知",
   },
 ];
 const createData = () => {
   return {
     username: null,
-    nickname: null,
-    password: null,
-    avatar: "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
-    role: "patient",
-    praiseQuantity: 0,
-    answerNumber: 0,
-    isNew: 0,
+    name: null,
+    age: null,
+    sex: null,
+    bloodType: null,
+    doctorUsername: null,
+    phone: null,
+    symptom: null,
+    response: null,
   };
 };
 const modal = reactive({
@@ -171,48 +185,37 @@ const pagination = reactive({
 });
 
 // 获取用户数据
-const loadUser = () => {
+const loadDisease = () => {
   loading.value = true;
-  api.front.loadAllUser({ username: inputValue.value }).then((res) => {
-    list.value = res.data &&  res.data.map((_, index) => ({ ..._, key: index + 1 }));
+  api.front.loadAllDisease({ name: inputValue.value }).then((res) => {
+    list.value =
+      res.data && res.data.map((_, index) => ({ ..._, key: index + 1 }));
     loading.value = false;
   });
 };
 
-// 删除特定用户
-const delUser = () => {
+// 删除病例
+const delDisease = () => {
   const data = [];
   for (let checked of checkedRowKeys.value) {
     data.push(list.value[checked - 1]);
   }
-  api.front.delUser(data).then((res) => {
+  api.front.delDisease(data).then((res) => {
     if (res && res.code === 0) {
       message.success(res.data);
-      loadUser();
+      loadDisease();
     }
   });
 };
 
-// 新增用户信息
-const addUser = () => {
-  const data = { ...modal.data };
-  api.front.addUser(data).then((res) => {
-    if (res && res.code === 0 && res.data === undefined) {
-      message.success("新增成功！");
-      loadUser();
-    } else {
-      message.error(res.data);
-    }
-  });
-};
 // 更改用户信息
-const updateUser = () => {
+const updateDisease = () => {
   const data = { ...modal.data };
   console.log(data);
-  api.front.updateUser(data).then((res) => {
+  api.front.updateDisease(data).then((res) => {
     if (res && res.code === 0 && res.data !== "没有该账户！") {
       message.success(res.data);
-      loadUser();
+      loadDisease();
     } else {
       message.error(res.data);
     }
@@ -224,7 +227,7 @@ const submit = () => {
   if (modal.title === "新增") {
     addUser();
   } else if (modal.title === "修改") {
-    updateUser();
+    updateDisease();
   }
   modal.showModal = false;
 };
@@ -232,7 +235,7 @@ const cancel = () => {
   modal.data = createData();
   modal.showModal = false;
 };
-loadUser();
+loadDisease();
 </script>
 
 <style lang="scss">

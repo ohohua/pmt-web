@@ -46,4 +46,23 @@ export default {
    * @returns Promise
    */
   updateSubject: (data) => http.post(`${baseUrl}/subject/updateSubject`, data),
+
+  /**
+   * 加载所有病例 | 或根据参数加载特定的病例
+   * @param {object} params 
+   * @returns Promise
+   */
+  loadAllDisease: (params) => http.get(`${baseUrl}/user/loadAllDisease`, { params }),
+
+  /**
+   * 删除病例
+   */
+  delDisease: (data) => http.post(`${baseUrl}/user/delDisease`, data),
+
+  /**
+   * 更改病例信息
+   * @param {object} data 
+   * @returns Promise
+   */
+  updateDisease: (data) => http.post(`${baseUrl}/user/updateDisease`, data),
 }

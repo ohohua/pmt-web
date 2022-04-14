@@ -171,3 +171,78 @@ export const subjectColumns = (fn) => {
     },
   ]);
 }
+
+export const diseaseColumns = (fn) => {
+
+  return ref([
+    {
+      type: "selection",
+    },
+    {
+      title: "姓名",
+      align: "center",
+      key: "name",
+    },
+    {
+      title: "账号",
+      align: "center",
+      key: "username",
+    },
+    {
+      title: "年龄",
+      align: "center",
+      key: "age",
+    },
+    {
+      title: "性别",
+      align: "center",
+      key: "sex",
+    },
+    {
+      title: "血型",
+      align: "center",
+      key: "bloodType",
+    },
+    {
+      title: "电话",
+      align: "center",
+      key: "phone",
+    },
+    {
+      title: "症状",
+      align: "center",
+      key: "symptom",
+    },
+    {
+      title: "医生建议",
+      align: "center",
+      key: "response",
+    },
+    {
+      title: "诊断医生",
+      align: "center",
+      key: "doctorUsername",
+    },
+    {
+      title: "操作",
+      align: "center",
+      key: "action",
+      render(row) {
+        return h(
+          "span",
+          {
+            style: {
+              cursor: "pointer",
+              color: "#2080f0",
+              fontSize: "13px",
+            },
+            onClick: () => fn(row),
+          },
+          {
+            default: () => `编辑`,
+          }
+        );
+      },
+    },
+  ]);
+}
