@@ -65,4 +65,30 @@ export default {
    * @returns Promise
    */
   updateDisease: (data) => http.post(`${baseUrl}/user/updateDisease`, data),
+  /**
+ * 根据最新 | 最热去获取用户的评论
+ * @param 
+ * @returns 【】
+ */
+  loadAllComment: (params = { type: 'NEW' }) => http.get(`${baseUrl}/community`, { params }),
+  /**
+   * 根据昵称搜索评论
+   * @param {nickname} params 
+   * @returns 
+   */
+  searchComment: (params) => http.get(`${baseUrl}/community/search`, { params }),
+
+  /**
+   * 根据id删除评论
+   * @param {nickname} params 
+   * @returns 
+   */
+  delComment: (data) => http.post(`${baseUrl}/community/del`, data),
+
+  /**
+   * 根据id修改评论
+   * @param {id} params 
+   * @returns 
+   */
+  updateComment: (data) => http.post(`${baseUrl}/community/update`, data),
 }

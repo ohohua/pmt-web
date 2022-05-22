@@ -85,12 +85,12 @@ const face = (face) => {
             <emoji @faceEmit="face" />
           </n-popover>
         </span>
-        <span class="cp f ai-c isHover">
+        <!-- <span class="cp f ai-c isHover">
           <Icon size="large">
             <Picture />
           </Icon>
           <span class="ml5">图片</span>
-        </span>
+        </span> -->
       </div>
       <n-button type="primary" @click="handleOutput" :disabled="isDisable"
         >发布</n-button

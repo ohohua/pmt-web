@@ -12,9 +12,48 @@
           >删除</n-button
         >
       </n-space>
+      <n-tabs type="line" animated @update:value="tabHandle">
+        <n-tab-pane name="admin" tab="管理员"> </n-tab-pane>
+        <n-tab-pane name="doctor" tab="医生"> </n-tab-pane>
+        <n-tab-pane name="patient" tab="病人"> </n-tab-pane>
+      </n-tabs>
+
       <n-data-table
-        :columns="columns"
-        :data="list"
+        v-if="isRender === 'admin'"
+        :columns="columns1"
+        :data="admin_list"
+        :bordered="true"
+        :loading="loading"
+        class="h0 f1 mt10"
+        flex-height
+        :pagination="pagination"
+        v-model:checked-row-keys="checkedRowKeys"
+      >
+        <template #empty>
+          <empty class="h100p" />
+        </template>
+      </n-data-table>
+
+      <n-data-table
+        v-if="isRender === 'doctor'"
+        :columns="columns2"
+        :data="doctor_list"
+        :bordered="true"
+        :loading="loading"
+        class="h0 f1 mt10"
+        flex-height
+        :pagination="pagination"
+        v-model:checked-row-keys="checkedRowKeys"
+      >
+        <template #empty>
+          <empty class="h100p" />
+        </template>
+      </n-data-table>
+
+      <n-data-table
+        v-if="isRender === 'patient'"
+        :columns="columns3"
+        :data="patient_list"
         :bordered="true"
         :loading="loading"
         class="h0 f1 mt10"
@@ -88,7 +127,7 @@
             />
           </n-form-item> -->
           <n-form-item label="新人" path="isNew">
-            <n-radio-group v-model:value="modal.data.isNew" name="isNew">
+            <n-radio-group v-model:value="modal.data.isNew" name="isNew" :disabled="modal.title === '新增'">
               <n-space>
                 <n-radio :value="0"> 新人 </n-radio>
                 <n-radio :value="1"> 老人 </n-radio>
@@ -112,10 +151,14 @@
 <script setup>
 import { ref, reactive } from "vue";
 import empty from "@components/empty.vue";
-import { userColumns } from "./components/columns.js";
+import {
+  adminColumns,
+  doctorColumns,
+  patientColumns,
+} from "./components/columns.js";
 import api from "@api";
 import { useMessage } from "naive-ui";
-
+import { role_select } from "@consts";
 // 打开模态框
 const openModal = (val) => {
   if (val === "add") {
@@ -128,12 +171,19 @@ const openModal = (val) => {
   modal.showModal = true;
 };
 const message = useMessage();
-const columns = userColumns(openModal);
+const columns1 = adminColumns(openModal);
+const columns2 = doctorColumns(openModal);
+const columns3 = patientColumns(openModal);
 const inputValue = ref(null);
 const loading = ref(false);
 const list = ref([]);
+const admin_list = ref([]);
+const patient_list = ref([]);
+const doctor_list = ref([]);
 const checkedRowKeys = ref([]);
 const formRef = ref(null);
+const role_value = ref("patient");
+const isRender = ref("admin");
 const options = [
   {
     label: "管理员",
@@ -174,7 +224,11 @@ const pagination = reactive({
 const loadUser = () => {
   loading.value = true;
   api.front.loadAllUser({ username: inputValue.value }).then((res) => {
-    list.value = res.data &&  res.data.map((_, index) => ({ ..._, key: index + 1 }));
+    list.value =
+      res.data && res.data.map((_, index) => ({ ..._, key: index + 1 }));
+    admin_list.value = list.value.filter((item) => item.role === 'root');
+    doctor_list.value = list.value.filter((item) => item.role === 'doctor');
+    patient_list.value = list.value.filter((item) => item.role === 'patient');
     loading.value = false;
   });
 };
@@ -232,6 +286,10 @@ const cancel = () => {
   modal.showModal = false;
 };
 loadUser();
+
+const tabHandle = (val) => {
+  isRender.value = val;
+};
 </script>
 
 <style lang="scss">
@@ -254,6 +312,9 @@ loadUser();
     background-color: transparent;
     // color: #1ea15c;
     // border-color: #1ea15c;
+  }
+  .n-select {
+    width: 100px;
   }
 }
 </style>

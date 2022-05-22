@@ -12,6 +12,11 @@ export default {
    * @returns Promise
    */
   underDoc: () => http.get(`${baseUrl}/user/underDoc`),
+  /**  
+   * 获取医生给病人的答复
+   * @returns Promise
+   */
+  underRes: () => http.get(`${baseUrl}/user/underRes`),
   /**
    * 通过病人username获取病例信息
    * @param {username} params 

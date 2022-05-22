@@ -120,14 +120,14 @@ const routes = [
               title: '病例管理'
             }
           },
-          {
-            path: '/index/settings/commit-manage',
-            name: 'commit-manage',
-            component: views['settings/commit-manage'],
-            meta: {
-              title: '评论管理'
-            }
-          }
+          // {
+          //   path: '/index/settings/commit-manage',
+          //   name: 'commit-manage',
+          //   component: views['settings/commit-manage'],
+          //   meta: {
+          //     title: '评论管理'
+          //   }
+          // }
         ]
       }
     ]

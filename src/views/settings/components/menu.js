@@ -58,21 +58,21 @@ export function createMenu() {
       key: 'disease-manage',
       icon: renderIcon(diseaseIcon)
     },
-    {
-      label: () =>
-        h(
-          resolveComponent('router-link'),
-          {
-            to: {
-              name: 'commit-manage',
-            }
-          },
-          {
-            default: () => '评论管理'
-          }
-        ),
-      key: 'commit-manage',
-      icon: renderIcon(CommentDotsRegular)
-    },
+    // {
+    //   label: () =>
+    //     h(
+    //       resolveComponent('router-link'),
+    //       {
+    //         to: {
+    //           name: 'commit-manage',
+    //         }
+    //       },
+    //       {
+    //         default: () => '评论管理'
+    //       }
+    //     ),
+    //   key: 'commit-manage',
+    //   icon: renderIcon(CommentDotsRegular)
+    // },
   ]
 }

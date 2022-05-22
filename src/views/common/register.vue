@@ -123,7 +123,7 @@ const backHandle = () => {
             placeholder="账号类型"
           ></n-select>
         </n-form-item>
-        <n-form-item label="资质证明" v-if="model.role === 'doctor'">
+        <!-- <n-form-item label="资质证明" v-if="model.role === 'doctor'">
           <n-upload
             action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f"
             :default-file-list="fileList"
@@ -132,7 +132,7 @@ const backHandle = () => {
           >
             <n-button type="default" class="text-sty">上传文件</n-button>
           </n-upload>
-        </n-form-item>
+        </n-form-item> -->
         <n-form-item>
           <div class="w100p f jc-sa">
             <n-button

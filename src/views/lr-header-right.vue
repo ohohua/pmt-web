@@ -2,10 +2,12 @@
 import { IosNotificationsOutline as NoticeIcon } from "@vicons/ionicons4";
 import { useRouter } from "vue-router";
 import todoList from "./header-right/todo-list.vue";
+import newsList from "./header-right/news-list.vue";
 import { pinia } from "@store/index.js";
 import { ref, watchEffect } from "vue";
 
 const store = pinia.useUserStore();
+
 const list = ref(store.list);
 watchEffect(() => {
   list.value = store.list;
@@ -34,6 +36,12 @@ const badgeLength = ref(0);
 const todoListLength = (val) => {
   badgeLength.value = val;
 };
+const defaultValue = ref('message');
+if(store.role === 'patient') {
+  defaultValue.value = 'todo';
+} else {
+  defaultValue.value = 'message';
+}
 </script>
 
 <template>
@@ -44,10 +52,12 @@ const todoListLength = (val) => {
           <NoticeIcon style="width: 22px" />
         </n-badge>
       </template>
-      <n-tabs type="line" size="small">
-        <n-tab-pane name="notice" tab="通知">通知</n-tab-pane>
-        <n-tab-pane name="message" tab="消息">消息</n-tab-pane>
-        <n-tab-pane name="todo" tab="待办" v-if="store.role !== 'patient'"
+      <n-tabs type="line" size="small" :default-value="defaultValue">
+        <!-- <n-tab-pane name="notice" tab="通知">通知</n-tab-pane>-->
+        <n-tab-pane name="message" tab="消息"
+          ><newsList @news-list="todoListLength"
+        /></n-tab-pane>
+        <n-tab-pane name="todo" tab="待办" v-if="store.role === 'doctor'"
           ><todoList @todo-list="todoListLength"
         /></n-tab-pane>
       </n-tabs>
